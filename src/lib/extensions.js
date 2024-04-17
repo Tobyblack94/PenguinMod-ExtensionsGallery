@@ -14,6 +14,14 @@ export default [
         isGitHub: true,
     },
     {
+        name: "Lazy Multi-lines",
+        description: "A handy extension for JavaScript Extension or to create your own text file!",
+        code: "Aness6040/lazymultilines.js",
+        banner: "Aness6040/lazymultilines.svg",
+        creator: "Aness6040",
+        isGitHub: true,
+    },
+    {
         name: "Jul Mik Utilities",
         description: "An Extension of Blocks Utilities by Jul Mik (V1 and V2 when named Jul Mik Blocks with Turbobuilder) and helped by Aness6040 (Actual v3)",
         code: "julmik6478/julmik_utilities.js",
@@ -21,12 +29,14 @@ export default [
         creator: "julmik6478",
         isGitHub: false,
     },
+    /*
     {
         name: "GLSL Custom Shader",
         description: "GLSL Shaders on Scratch by PROMISE",
         code: "Aness6040/custom-shader.js",
         banner: "PROMISE/custom_shader.png",
-    },
+    }, 
+    */
     {
         name: "CloudLink",
         description: "A powerful WebSocket extension for Scratch. Allows for online connectivity to servers for things like multiplayer.",
