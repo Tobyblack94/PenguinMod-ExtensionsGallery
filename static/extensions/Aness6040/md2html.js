@@ -241,6 +241,9 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
         md2html(markdown) {
             function applyMarkdownReplacements(line, tagNames, additionalAttributes) {
                 return line
+                    .replace(/(^|\r?\n)( *)- /g, (match, newline, spaces) => {
+                        return newline + spaces.replace(/^ /g, '&nbsp;') + ' ';
+                    }) // List item
                     .replace(/!\[(.*?)\]\((.*?)\)/g, `<${tagNames['img']} src="$2" alt="$1"${additionalAttributes['img']}>`) // Image
                     .replace(/\[(.*?)\]\((.*?)\)/g, `<${tagNames['a']} href="$2"${additionalAttributes['a']}>$1</${tagNames['a']}>`) // Hyperlien
                     .replace(/###\s(.*?)(\r?\n|$)/g, `<${tagNames['h3']}${additionalAttributes['h3']}>$1</${tagNames['h3']}>`) // H3
@@ -302,11 +305,12 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
                     }
                 }
         
+        
                 // Traiter tous les remplacements Markdown sur toute la ligne
                 line = applyMarkdownReplacements(line, this.tagNames, this.additionalAttributes);
         
                 // Si la ligne commence par `- `, commence ou continue la liste
-                if (line.startsWith('- ')) {
+                if (line.startsWith('- ') || line.startsWith('* ')) {
                     // Si ce n'est pas déjà le cas, commencer une nouvelle liste
                     if (!inList) {
                         html += `<${this.tagNames['ul']}>${this.additionalAttributes['ul']}`;
@@ -346,7 +350,7 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
             }
         
             return html;
-        }        
+        }       
         
         changeTagName({ tag, name }) {
             if (this.tagNames[tag]) {
