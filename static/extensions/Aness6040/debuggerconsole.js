@@ -1,7 +1,7 @@
 ((Scratch) => {
     'use strict';
 
-    const version = '0.2.0';
+    const version = '0.2.2';
 
     const { Cast, ArgumentType, BlockType } = Scratch;
 
@@ -165,6 +165,7 @@
     let isRTL = rtlLang.includes(localStorage.getItem('tw:language'));
 
     let consoleWindowShown = false;
+    let defaultHelpMessage = true;
 
     let consoleWindow = document.createElement('div');
     consoleWindow.style.position = 'fixed';
@@ -304,14 +305,23 @@
                     addText({ message: `v${version}`, bullet: '>' });
                     break;
                 }
-                case 'help': {
-                    addText({
-                        message: '> ' + lang(
-                            'help',
-                            'Help:<br><br>   Breakpoint: Pause the program for debugging, press<br>               "Continue" to resume execution.<br>   Console: A window for input and output.<br>   Output: Print text or variables at key points to debug.<br>   Input: Click the ">" button above to input,<br>          input can be detected as<br>          "when input" or "get last input".'
-                        ).replace(/ /g, '&nbsp;') + '<br>&nbsp;',
-                        innerHTML: true
-                    });
+                case 'help': { // help thingy
+                    if(defaultHelpMessage){
+                        addText({
+                            message: '> ' + lang(
+                                'help',
+                                'Help:<br><br>   Breakpoint: Pause the program for debugging, press<br>               "Continue" to resume execution.<br>   Console: A window for input and output.<br>   Output: Print text or variables at key points to debug.<br>   Input: Click the ">" button above to input,<br>          input can be detected as<br>          "when input" or "get last input".'
+                            ).replace(/ /g, '&nbsp;') + '<br>&nbsp;',
+                            innerHTML: true
+                        });
+                        
+                        
+                    } else {
+                        addText({ message: messageText, bullet: `$ ` });
+
+                        lastInput = messageText;
+                        vm.runtime.startHats('aness6040debugger_whenInput');
+                    }
                     break;
                 }
                 default: {
@@ -661,6 +671,22 @@
                         blockType: BlockType.COMMAND,
                         text: lang('aness6040debugger.logStage', 'log stage')
                     },
+                    {
+                        opcode: 'enabledisableDefaultHelpMessage',
+                        blockType: BlockType.COMMAND,
+                        text: lang('aness6040debugger.enabledisableDefaultHelpMessage', '[enabledisable] default help message'),
+                        arguments: {
+                            enabledisable: {
+                                type: ArgumentType.STRING,
+                                menu: 'enabledisable'
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'defaultHelpMessageEnabled',
+                        blockType: BlockType.BOOLEAN,
+                        text: lang('aness6040debugger.defaultHelpMessageEnabled', 'default help message enabled?'),
+                    },
                     '---',
                     {
                         opcode: 'whenInput',
@@ -738,6 +764,25 @@
                                     default: 'true or false'
                                 }),
                                 value: 'all'
+                            }
+                        ]
+                    },
+                    enabledisable: {
+                        acceptReporters: false,
+                        items: [
+                            {
+                                text: formatMessage({
+                                    id: 'aness6040debugger.enable',
+                                    default: 'enable'
+                                }),
+                                value: 'enable'
+                            },
+                            {
+                                text: formatMessage({
+                                    id: 'aness6040debugger.disable',
+                                    default: 'disable'
+                                }),
+                                value: 'disable'
                             }
                         ]
                     }
@@ -873,6 +918,18 @@
             }).then((base64ImageData) => {
                 addImg(base64ImageData);
             });
+        }
+
+        enabledisableDefaultHelpMessage(args){
+          if (args.enabledisable === 'enable') {
+            defaultHelpMessage = true;
+          } 
+          else if (args.enabledisable === 'disable') {
+            defaultHelpMessage = false;
+          }
+        }
+        defaultHelpMessageEnabled(){
+            return defaultHelpMessage;
         }
 
         getLastInput() {
