@@ -271,17 +271,17 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
                         inList = false;
                     }
                     html += line
-                        .replace(/!\[(.*?)\]\((.*?)\)/g, `<${this.tagNames['img']} src="$2" alt="$1"${this.additionalAttributes['img']}>`) // Image
-                        .replace(/\[(.*?)\]\((.*?)\)/g, `<${this.tagNames['a']} href="$2"${this.additionalAttributes['a']}>$1</${this.tagNames['a']}>`) // Hyperlien
-                        .replace(/###\s(.*?)(\r?\n|$)/g, `<${this.tagNames['h3']}${this.additionalAttributes['h3']}>$1</${this.tagNames['h3']}>`) // H3
-                        .replace(/##\s(.*?)(\r?\n|$)/g, `<${this.tagNames['h2']}${this.additionalAttributes['h2']}>$1</${this.tagNames['h2']}>`) // H2
-                        .replace(/#\s(.*?)(\r?\n|$)/g, `<${this.tagNames['h1']}${this.additionalAttributes['h1']}>$1</${this.tagNames['h1']}>`) // H1
-                        .replace(/\*\*(.*?)\*\*/g, `<${this.tagNames['strong']}${this.additionalAttributes['strong']}>$1</${this.tagNames['strong']}>`) // Gras
-                        .replace(/\*(.*?)\*/g, `<${this.tagNames['em']}${this.additionalAttributes['em']}>$1</${this.tagNames['em']}>`) // Italique
-                        .replace(/\_\_(.*?)\_\_/g, `<${this.tagNames['strong']}${this.additionalAttributes['strong']}>$1</${this.tagNames['strong']}>`) // Gras
-                        .replace(/\_(.*?)\_/g, `<${this.tagNames['em']}${this.additionalAttributes['em']}>$1</${this.tagNames['em']}>`) // Italique
-                        .replace(/\n/g, `<${this.tagNames['br']}${this.additionalAttributes['br']}>`) // Ajouter un <br> pour les sauts de ligne
-                        .replace(/```(.*?)\n(.*?)```/gs, `<${this.tagNames['block-code']} lang="$1"${this.additionalAttributes['block-code']}>$2</${this.tagNames['block-code']}>`); // Blocs de code
+                    .replace(/!\[(.*?)\]\((.*?)\)/g, `<${this.tagNames['img']} src="$2" alt="$1"${this.additionalAttributes['img']}>`) // Image
+                    .replace(/\[(.*?)\]\((.*?)\)/g, `<${this.tagNames['a']} href="$2"${this.additionalAttributes['a']}>$1</${this.tagNames['a']}>`) // Hyperlien
+                    .replace(/###\s(.*?)(\r?\n|$)/g, `<${this.tagNames['h3']}${this.additionalAttributes['h3']}>$1</${this.tagNames['h3']}>`) // H3
+                    .replace(/##\s(.*?)(\r?\n|$)/g, `<${this.tagNames['h2']}${this.additionalAttributes['h2']}>$1</${this.tagNames['h2']}>`) // H2
+                    .replace(/#\s(.*?)(\r?\n|$)/g, `<${this.tagNames['h1']}${this.additionalAttributes['h1']}>$1</${this.tagNames['h1']}>`) // H1
+                    .replace(/\*\*(.*?)\*\*/g, `<${this.tagNames['strong']}${this.additionalAttributes['strong']}>$1</${this.tagNames['strong']}>`) // Gras
+                    .replace(/\*(.*?)\*/g, `<${this.tagNames['em']}${this.additionalAttributes['em']}>$1</${this.tagNames['em']}>`) // Italique
+                    .replace(/\_\_(.*?)\_\_/g, `<${this.tagNames['strong']}${this.additionalAttributes['strong']}>$1</${this.tagNames['strong']}>`) // Gras
+                    .replace(/\_(.*?)\_/g, `<${this.tagNames['em']}${this.additionalAttributes['em']}>$1</${this.tagNames['em']}>`) // Italique
+                    .replace(/\n/g, `<${this.tagNames['br']}${this.additionalAttributes['br']}>`) // Ajouter un <br> pour les sauts de ligne
+                    .replace(/```(.*?)\n(.*?)```/gs, `<${this.tagNames['block-code']} lang="$1"${this.additionalAttributes['block-code']}>$2</${this.tagNames['block-code']}>`); // Blocs de code                    
                 }
 
                 // Ajouter un saut de ligne après chaque ligne convertie, sauf pour la dernière ligne
