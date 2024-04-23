@@ -16,15 +16,16 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
                 'em': 'em',
                 'li': 'li',
                 'br': 'br',
-                'a': 'a' // Ajout du tag 'a'
+                'a': 'a',
+                'blockquote': 'blockquote'
             };
 
             // Attributs par défaut pour chaque balise
             this.defaultAdditionalAttributes = {
-                'ul': ' class="markdown-list"',
+                'ul': '',
                 'img': ' style="max-width: 100%; height: auto;"',
-                'block-code': '',
-                'inline-code': '',
+                'block-code': ' style="font-family: Consolas,"courier new";color: C1E5FF;background-color: #404040;padding: 2px;font-size: 105%;"',
+                'inline-code': ' style="font-family: Consolas,"courier new";color: white;background-color: #404040;padding: 2px;font-size: 105%;"',
                 'h3': '',
                 'h2': '',
                 'h1': '',
@@ -32,7 +33,8 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
                 'em': '',
                 'li': '',
                 'br': '',
-                'a': '' // Attribut par défaut pour le tag 'a'
+                'a': '',
+                'blockquote': '',
             };
 
             // Initialisation des tagNames et attributes avec les valeurs par défaut
@@ -53,7 +55,7 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
                 docsURI: 'https://electramod-extensions-gallery.vercel.app/docs/md2html',
                 blocks: [
                     {
-                        opcode: 'convertAness6040MD2HTML',
+                        opcode: 'convertmd2html',
                         blockType: Scratch.BlockType.REPORTER,
                         text: 'Convert markdown [markdown] to HTML',
                         arguments: {
@@ -182,8 +184,12 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
                             value: 'img'
                         },
                         {
-                            text: 'code',
-                            value: 'code'
+                            text: 'block-code',
+                            value: 'block-code'
+                        },
+                        {
+                            text: 'inline-code',
+                            value: 'inline-code'
                         },
                         {
                             text: 'h3',
@@ -214,8 +220,12 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
                             value: 'br'
                         },
                         {
-                            text: 'a', // Ajout du menu pour le tag 'a'
+                            text: 'a',
                             value: 'a'
+                        },
+                        {
+                            text: 'blockquote',
+                            value: 'blockquote'
                         }
                     ]
                 }
@@ -223,19 +233,35 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
             };
         }
 
-        convertAness6040MD2HTML({ markdown }) {
-            const html = this.Aness6040MD2HTML(markdown);
+        convertmd2html({ markdown }) {
+            const html = this.md2html(markdown);
             return html;
         }
 
-        Aness6040MD2HTML(markdown) {
+        md2html(markdown) {
+            function applyMarkdownReplacements(line, tagNames, additionalAttributes) {
+                return line
+                    .replace(/!\[(.*?)\]\((.*?)\)/g, `<${tagNames['img']} src="$2" alt="$1"${additionalAttributes['img']}>`) // Image
+                    .replace(/\[(.*?)\]\((.*?)\)/g, `<${tagNames['a']} href="$2"${additionalAttributes['a']}>$1</${tagNames['a']}>`) // Hyperlien
+                    .replace(/###\s(.*?)(\r?\n|$)/g, `<${tagNames['h3']}${additionalAttributes['h3']}>$1</${tagNames['h3']}>`) // H3
+                    .replace(/##\s(.*?)(\r?\n|$)/g, `<${tagNames['h2']}${additionalAttributes['h2']}>$1</${tagNames['h2']}>`) // H2
+                    .replace(/#\s(.*?)(\r?\n|$)/g, `<${tagNames['h1']}${additionalAttributes['h1']}>$1</${tagNames['h1']}>`) // H1
+                    .replace(/\*\*(.*?)\*\*/g, `<${tagNames['strong']}${additionalAttributes['strong']}>$1</${tagNames['strong']}>`) // Gras
+                    .replace(/\*(.*?)\*/g, `<${tagNames['em']}${additionalAttributes['em']}>$1</${tagNames['em']}>`) // Italique
+                    .replace(/\_\_(.*?)\_\_/g, `<${tagNames['strong']}${additionalAttributes['strong']}>$1</${tagNames['strong']}>`) // Gras
+                    .replace(/\_(.*?)\_/g, `<${tagNames['em']}${additionalAttributes['em']}>$1</${tagNames['em']}>`) // Italique
+                    .replace(/```(.*?)\n(.*?)```/gs, `<${tagNames['block-code']} lang="$1"${additionalAttributes['block-code']}>$2</${tagNames['block-code']}>`) // Blocs de code
+                    .replace(/`(.*?)`/g, `<${tagNames['inline-code']}${additionalAttributes['inline-code']}>$1</${tagNames['inline-code']}>`); // Blocs de code en ligne
+            }
+        
             let html = '';
             let blockCodeCount = 0;
             let inList = false;
-
+            let inBlockquote = false;
+        
             // Diviser le markdown par ligne
             const lines = markdown.split(/\r?\n/);
-
+        
             // Convertir chaque ligne individuellement
             lines.forEach((line, index) => {
                 // Vérifier si la ligne commence par ```
@@ -243,7 +269,7 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
                     // Si le nombre de blocs de code est pair, fermer le bloc de code précédent
                     if (blockCodeCount % 2 === 0) {
                         const lang = line.substring(3).trim();
-                        html += `<${this.tagNames['block-code']} lang="${lang}${this.additionalAttributes['block-code']}">`;
+                        html += `<${this.tagNames['block-code']} lang="${lang}"${this.additionalAttributes['block-code']}>`;
                     } else {
                         // Sinon, ouvrir un nouveau bloc de code
                         html += `</${this.tagNames['block-code']}>`;
@@ -253,7 +279,32 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
                     // Ignorer le reste du traitement de la ligne
                     return;
                 }
-
+        
+                // Vérifier si la ligne commence par "> "
+                if (line.startsWith('> ') && line.trim().startsWith('>')) {
+                    // Si ce n'est pas déjà le cas, commencer une nouvelle citation
+                    if (!inBlockquote) {
+                        html += `<${this.tagNames['blockquote']}>`;
+                        inBlockquote = true;
+                    }
+                    // Traiter tous les remplacements Markdown sur toute la ligne
+                    line = applyMarkdownReplacements(line, this.tagNames, this.additionalAttributes);
+        
+                    // Ajouter la ligne à la citation
+                    html += line.substring(2);
+                    // Ignorer le reste du traitement de la ligne
+                    return;
+                } else {
+                    // Si nous étions dans une citation, la fermer
+                    if (inBlockquote) {
+                        html += `</${this.tagNames['blockquote']}>`;
+                        inBlockquote = false;
+                    }
+                }
+        
+                // Traiter tous les remplacements Markdown sur toute la ligne
+                line = applyMarkdownReplacements(line, this.tagNames, this.additionalAttributes);
+        
                 // Si la ligne commence par `- `, commence ou continue la liste
                 if (line.startsWith('- ')) {
                     // Si ce n'est pas déjà le cas, commencer une nouvelle liste
@@ -270,39 +321,33 @@ const extIcon = "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJod
                         html += `</${this.tagNames['ul']}>`;
                         inList = false;
                     }
-                    html += line
-                    .replace(/!\[(.*?)\]\((.*?)\)/g, `<${this.tagNames['img']} src="$2" alt="$1"${this.additionalAttributes['img']}>`) // Image
-                    .replace(/\[(.*?)\]\((.*?)\)/g, `<${this.tagNames['a']} href="$2"${this.additionalAttributes['a']}>$1</${this.tagNames['a']}>`) // Hyperlien
-                    .replace(/###\s(.*?)(\r?\n|$)/g, `<${this.tagNames['h3']}${this.additionalAttributes['h3']}>$1</${this.tagNames['h3']}>`) // H3
-                    .replace(/##\s(.*?)(\r?\n|$)/g, `<${this.tagNames['h2']}${this.additionalAttributes['h2']}>$1</${this.tagNames['h2']}>`) // H2
-                    .replace(/#\s(.*?)(\r?\n|$)/g, `<${this.tagNames['h1']}${this.additionalAttributes['h1']}>$1</${this.tagNames['h1']}>`) // H1
-                    .replace(/\*\*(.*?)\*\*/g, `<${this.tagNames['strong']}${this.additionalAttributes['strong']}>$1</${this.tagNames['strong']}>`) // Gras
-                    .replace(/\*(.*?)\*/g, `<${this.tagNames['em']}${this.additionalAttributes['em']}>$1</${this.tagNames['em']}>`) // Italique
-                    .replace(/\_\_(.*?)\_\_/g, `<${this.tagNames['strong']}${this.additionalAttributes['strong']}>$1</${this.tagNames['strong']}>`) // Gras
-                    .replace(/\_(.*?)\_/g, `<${this.tagNames['em']}${this.additionalAttributes['em']}>$1</${this.tagNames['em']}>`) // Italique
-                    .replace(/\n/g, `<${this.tagNames['br']}${this.additionalAttributes['br']}>`) // Ajouter un <br> pour les sauts de ligne
-                    .replace(/```(.*?)\n(.*?)```/gs, `<${this.tagNames['block-code']} lang="$1"${this.additionalAttributes['block-code']}>$2</${this.tagNames['block-code']}>`); // Blocs de code                    
+                    html += line;
                 }
-
+        
                 // Ajouter un saut de ligne après chaque ligne convertie, sauf pour la dernière ligne
-                if (index !== lines.length - 1) {
+                if (index !== lines.length - 1 && !inBlockquote) {
                     html += `<${this.tagNames['br']}${this.additionalAttributes['br']}>`;
                 }
             });
-
+        
             // Si nous sommes toujours dans une liste, fermer la balise de liste
             if (inList) {
                 html += `</${this.tagNames['ul']}>`;
             }
-
+        
             // Si le nombre de blocs de code est impair à la fin, fermer le dernier bloc de code
             if (blockCodeCount % 2 !== 0) {
                 html += `</${this.tagNames['block-code']}>`;
             }
-
+        
+            // Si nous sommes encore dans une citation, la fermer
+            if (inBlockquote) {
+                html += `</${this.tagNames['blockquote']}>`;
+            }
+        
             return html;
-        }
-
+        }        
+        
         changeTagName({ tag, name }) {
             if (this.tagNames[tag]) {
                 this.tagNames[tag] = name;
