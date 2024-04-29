@@ -1,7 +1,7 @@
 ((Scratch) => {
     'use strict';
 
-    const version = '0.2.2';
+    const version = '0.2.3';
 
     const { Cast, ArgumentType, BlockType } = Scratch;
 
@@ -165,7 +165,7 @@
     let isRTL = rtlLang.includes(localStorage.getItem('tw:language'));
 
     let consoleWindowShown = false;
-    let defaultHelpMessage = true;
+    let defaultHelpMessage = 'enable';
 
     let consoleWindow = document.createElement('div');
     consoleWindow.style.position = 'fixed';
@@ -195,7 +195,7 @@
     titleBar.style.paddingRight = '12px';
     titleBar.style.cursor = 'move';
     titleBar.style.fontSize = '16px';
-    titleBar.innerText = lang('aness6040debugger.windowText', 'Console') + ' - by NOname and Aness6040';
+    titleBar.innerText = lang('aness6040debugger.windowText', 'Console') + ' @' + version + ' - by Aness6040 & NOname';
     titleBar.style.position = 'sticky';
     titleBar.style.top = '0px';
     consoleWindow.appendChild(titleBar);
@@ -306,7 +306,7 @@
                     break;
                 }
                 case 'help': { // help thingy
-                    if(defaultHelpMessage){
+                    if(defaultHelpMessage === 'enable'){
                         addText({
                             message: '> ' + lang(
                                 'help',
@@ -316,7 +316,10 @@
                         });
                         
                         
-                    } else {
+                    } else if (defaultHelpMessage === 'disable'){
+                        lastInput = messageText;
+                        vm.runtime.startHats('aness6040debugger_whenInput');
+                    } else if (defaultHelpMessage === 'completlydisable'){
                         addText({ message: messageText, bullet: `$ ` });
 
                         lastInput = messageText;
@@ -783,7 +786,14 @@
                                     default: 'disable'
                                 }),
                                 value: 'disable'
-                            }
+                            },
+                            {
+                                text: formatMessage({
+                                    id: 'aness6040debugger.completlydisable',
+                                    default: 'completly disable'
+                                }),
+                                value: 'completlydisable'
+                            },
                         ]
                     }
                 }
@@ -922,10 +932,13 @@
 
         enabledisableDefaultHelpMessage(args){
           if (args.enabledisable === 'enable') {
-            defaultHelpMessage = true;
+            defaultHelpMessage = 'enable';
           } 
           else if (args.enabledisable === 'disable') {
-            defaultHelpMessage = false;
+            defaultHelpMessage = 'disable';
+          }
+          else if (args.enabledisable === 'completlydisable') {
+            defaultHelpMessage = 'completlydisable';
           }
         }
         defaultHelpMessageEnabled(){
