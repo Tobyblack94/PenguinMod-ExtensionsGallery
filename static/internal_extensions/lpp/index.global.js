@@ -1,6 +1,8 @@
-/// Copyright (c) FurryR 2023. This project is licensed under the LGPL-3.0 license.
-/// Original repository: https://github.com/FurryR/lpp-scratch
-
+// Name: lpp Beta
+// ID: lpp
+// Description: A high-level programming language based on Scratch.
+// By: FurryR <https://scratch.mit.edu/users/FurryR/>
+// License: LGPL-3.0
 "use strict";
 (() => {
   var __defProp = Object.defineProperty;
@@ -8,9 +10,6 @@
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
   };
-
-  // src/impl/asset/icon.ts
-  var icon_default = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBmaWxsPSJub25lIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSI2MDAiIGhlaWdodD0iMzcyIiB2aWV3Qm94PSIwIDAgNjAwIDM3MiI+PGc+PGc+PHBhdGggZD0iTTI3Ni40NTMxNDgzMzk4NDM4LDExMC45MjQ4MDQ2ODc1TDIxMC45NzQ1NDgzMzk4NDM3NSwxMTAuOTI0ODA0Njg3NUwyMTAuOTc0NTQ4MzM5ODQzNzUsMzUyLjUxMDgwNDY4NzVMMjExLjAwMDAwMDAzOTg0Mzc0LDM1Mi41MTA4MDQ2ODc1TDIxMS4wMDAwMDAwMzk4NDM3NCwzNzEuOTk5ODA0Njg3NUwyMzIuMDAwMDQ4MzM5ODQzNzQsMzcxLjk5OTgwNDY4NzVMMjMyLjAwMDA0ODMzOTg0Mzc0LDI0MS45NTQ4MDQ2ODc1TDI3Ni40NTMxNDgzMzk4NDM4LDI0MS45NTQ4MDQ2ODc1QzMxMi42MTU1NDgzMzk4NDM3NywyNDEuOTU0ODA0Njg3NSwzNDEuOTMxNTQ4MzM5ODQzNzQsMjEyLjYyMjgwNDY4NzQ5OTk4LDM0MS45MzE1NDgzMzk4NDM3NCwxNzYuNDM5NjA0Njg3NDk5OThDMzQxLjkzMTU0ODMzOTg0Mzc0LDE0MC4yNTY4MDQ2ODc1LDMxMi42MTU1NDgzMzk4NDM3NywxMTAuOTI0ODA0Njg3NSwyNzYuNDUzMTQ4MzM5ODQzOCwxMTAuOTI0ODA0Njg3NVpNMjMyLjAwMDA0ODMzOTg0Mzc0LDEzMS4zOTgyMDQ2ODc1TDIzMi4wMDAwNDgzMzk4NDM3NCwyMjEuNDgwODA0Njg3NDk5OThMMjc2LjQ1MzE0ODMzOTg0MzgsMjIxLjQ4MDgwNDY4NzQ5OTk4UTI4NS4wMzk3NDgzMzk4NDM3NSwyMjEuNDgwODA0Njg3NDk5OTgsMjkzLjAyMzQ0ODMzOTg0Mzc1LDIxOC4zMTg4MDQ2ODc1UTMwMS42OTIwNDgzMzk4NDM3LDIxNC44ODQ4MDQ2ODc0OTk5OCwzMDguMjg0NjQ4MzM5ODQzOCwyMDguMjg4NzA0Njg3NVEzMTQuODc3NTQ4MzM5ODQzNzcsMjAxLjY5MjUwNDY4NzUsMzE4LjMwODU0ODMzOTg0Mzc1LDE5My4wMTkxMDQ2ODc1UTMyMS40Njk1NDgzMzk4NDM3NSwxODUuMDMxMDA0Njg3NSwzMjEuNDY5NTQ4MzM5ODQzNzUsMTc2LjQzOTYwNDY4NzQ5OTk4UTMyMS40Njk1NDgzMzk4NDM3NSwxNjcuODQ4MjA0Njg3NTAwMDIsMzE4LjMwODU0ODMzOTg0Mzc1LDE1OS44NjAxMDQ2ODc0OTk5OFEzMTQuODc3NTQ4MzM5ODQzNzcsMTUxLjE4NjcwNDY4NzUsMzA4LjI4NDY0ODMzOTg0MzgsMTQ0LjU5MDUwNDY4NzUwMDAyUTMwMS42OTIxNDgzMzk4NDM3NSwxMzcuOTk0MzA0Njg3NSwyOTMuMDIzNDQ4MzM5ODQzNzUsMTM0LjU2MDYwNDY4NzVRMjg1LjAzOTc0ODMzOTg0Mzc1LDEzMS4zOTgyMDQ2ODc1LDI3Ni40NTMxNDgzMzk4NDM4LDEzMS4zOTgyMDQ2ODc1TDIzMi4wMDAwNDgzMzk4NDM3NCwxMzEuMzk4MjA0Njg3NVoiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbD0iIzg2ODY4NiIgZmlsbC1vcGFjaXR5PSIxIi8+PC9nPjxnPjxwYXRoIGQ9Ik0xMzYuMTA4NzE2ODk0NTMxMjYsMEw4Ni45OTk4MTY4OTQ1MzEyNSwwTDg2Ljk5OTgxNjg5NDUzMTI1LDIwLjQ3MzRMMTE1LjY0NjcxNjg5NDUzMTI1LDIwLjQ3MzRMMTE1LjY0NjcxNjg5NDUzMTI1LDE3Ni4wNzFDMTE1LjY0NjcxNjg5NDUzMTI1LDIxMi4yNTQsMTQ0Ljk2MjQxNjg5NDUzMTI2LDI0MS41ODYsMTgxLjEyNTMxNjg5NDUzMTI0LDI0MS41ODZMMTkxLjM1NTgxNjg5NDUzMTI0LDI0MS41ODZMMTkxLjM1NTgxNjg5NDUzMTI0LDIyMS4xMTJMMTgxLjEyNTMxNjg5NDUzMTI0LDIyMS4xMTJRMTcyLjUzODYxNjg5NDUzMTIzLDIyMS4xMTIsMTY0LjU1NDkxNjg5NDUzMTIzLDIxNy45NVExNTUuODg2MzE2ODk0NTMxMjYsMjE0LjUxNiwxNDkuMjkzODE2ODk0NTMxMjMsMjA3LjkyUTE0Mi43MDEzMTY4OTQ1MzEyNiwyMDEuMzI0LDEzOS4yNjk0MTY4OTQ1MzEyNSwxOTIuNjUxUTEzNi4xMDg3MTY4OTQ1MzEyNiwxODQuNjYyLDEzNi4xMDg3MTY4OTQ1MzEyNiwxNzYuMDcxTDEzNi4xMDg3MTY4OTQ1MzEyNiwwWiIgZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSIjODY4Njg2IiBmaWxsLW9wYWNpdHk9IjEiLz48L2c+PGc+PHBhdGggZD0iTTQyNy40Nzg2MDAwMDAwMDAwMywxMTFMMzYyLDExMUwzNjIsMzUyLjU4NkwzNjIuMDI1NDUxNywzNTIuNTg2TDM2Mi4wMjU0NTE3LDM3MkwzODMuMDI1NSwzNzJMMzgzLjAyNTUsMjQyLjAzTDQyNy40Nzg2MDAwMDAwMDAwMywyNDIuMDNDNDYzLjY0MSwyNDIuMDMsNDkyLjk1NywyMTIuNjk3OTk5OTk5OTk5OTgsNDkyLjk1NywxNzYuNTE0Nzk5OTk5OTk5OThDNDkyLjk1NywxNDAuMzMyLDQ2My42NDEsMTExLDQyNy40Nzg2MDAwMDAwMDAwMywxMTFaTTM4My4wMjU1LDEzMS40NzM0TDM4My4wMjU1LDIyMS41NTU5OTk5OTk5OTk5OEw0MjcuNDc4NjAwMDAwMDAwMDMsMjIxLjU1NTk5OTk5OTk5OTk4UTQzNi4wNjUyLDIyMS41NTU5OTk5OTk5OTk5OCw0NDQuMDQ4OSwyMTguMzk0UTQ1Mi43MTc1LDIxNC45NTk5OTk5OTk5OTk5OCw0NTkuMzEwMTAwMDAwMDAwMDMsMjA4LjM2MzlRNDY1LjkwMywyMDEuNzY3Nyw0NjkuMzM0LDE5My4wOTQzUTQ3Mi40OTUsMTg1LjEwNjIsNDcyLjQ5NSwxNzYuNTE0Nzk5OTk5OTk5OThRNDcyLjQ5NSwxNjcuOTIzNDAwMDAwMDAwMDIsNDY5LjMzNCwxNTkuOTM1Mjk5OTk5OTk5OThRNDY1LjkwMywxNTEuMjYxOSw0NTkuMzEwMTAwMDAwMDAwMDMsMTQ0LjY2NTcwMDAwMDAwMDAyUTQ1Mi43MTc2LDEzOC4wNjk1LDQ0NC4wNDg5LDEzNC42MzU4UTQzNi4wNjUyLDEzMS40NzM0LDQyNy40Nzg2MDAwMDAwMDAwMywxMzEuNDczNEwzODMuMDI1NSwxMzEuNDczNFoiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZmlsbD0iIzg2ODY4NiIgZmlsbC1vcGFjaXR5PSIxIi8+PC9nPjxnIHRyYW5zZm9ybT0ibWF0cml4KDAuNzA2OTExMjA2MjQ1NDIyNCwwLjcwNzMwMjMzMTkyNDQzODUsLTAuNzA2OTExMjA2MjQ1NDIyNCwwLjcwNzMwMjMzMTkyNDQzODUsOTIuODA5NzA0OTIwMDgyMzcsLTE5LjEyMjU5OTY2NzQwMDIxKSI+PHBhdGggZD0iTTg5LjkxODIxNTc0NzA3MDMyLDEwMi40OTQ1MzczNTM1MTU2Mkw2OS40NTA1MTU3NDcwNzAzMSwxMDIuNDk0NTM3MzUzNTE1NjJMNjkuNDUwNTE1NzQ3MDcwMzEsMjAwLjczOTUzNzM1MzUxNTYzTDE2Ny42OTU1MTU3NDcwNzAzMiwyMDAuNzM5NTM3MzUzNTE1NjNMMTY3LjY5NTUxNTc0NzA3MDMyLDE4MC4yNzE4MzczNTM1MTU2Mkw4OS45MTgyMTU3NDcwNzAzMiwxODAuMjcxODM3MzUzNTE1NjJMODkuOTE4MjE1NzQ3MDcwMzIsMTAyLjQ5NDUzNzM1MzUxNTYyWiIgZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSIjNDY0NjQ2IiBmaWxsLW9wYWNpdHk9IjEiLz48L2c+PGcgdHJhbnNmb3JtPSJtYXRyaXgoLTAuNzA2OTExMDg3MDM2MTMyOCwtMC43MDczMDIzMzE5MjQ0Mzg1LDAuNzA2OTExMjA2MjQ1NDIyNCwtMC43MDczMDIyNzIzMTk3OTM3LDczNS4wOTE5NzYwNjU1OTYxLDc4Ny4wNjQ3MDc5NjU0MykiPjxwYXRoIGQ9Ik01NTEuMDE3MTk5NTExNzE4OCwyNDEuMjAyNjM2NzE4NzVMNTMwLjU0OTQ5OTUxMTcxODgsMjQxLjIwMjYzNjcxODc1TDUzMC41NDk0OTk1MTE3MTg4LDMzOS40NDc2MzY3MTg3NUw2MjguNzk0NDk5NTExNzE4OCwzMzkuNDQ3NjM2NzE4NzVMNjI4Ljc5NDQ5OTUxMTcxODgsMzE4Ljk3OTkzNjcxODc0OTk3TDU1MS4wMTcxOTk1MTE3MTg4LDMxOC45Nzk5MzY3MTg3NDk5N0w1NTEuMDE3MTk5NTExNzE4OCwyNDEuMjAyNjM2NzE4NzVaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiM0NjQ2NDYiIGZpbGwtb3BhY2l0eT0iMSIvPjwvZz48L2c+PC9zdmc+";
 
   // src/core/index.ts
   var core_exports = {};
@@ -107,6 +106,7 @@
       ["+", (a, b) => a + b],
       ["-", (a, b) => a - b],
       ["*", (a, b) => a * b],
+      ["**", (a, b) => a ** b],
       ["/", (a, b) => a / b],
       ["<<", (a, b) => a << b],
       [">>", (a, b) => a >> b],
@@ -121,8 +121,6 @@
     return fn(left, right);
   }
   function equal(lhs, rhs) {
-    lhs = lhs instanceof LppConstant && typeof lhs.value === "boolean" ? new LppConstant(+lhs.value) : lhs;
-    rhs = rhs instanceof LppConstant && typeof rhs.value === "boolean" ? new LppConstant(+rhs.value) : rhs;
     if (lhs instanceof LppConstant && rhs instanceof LppConstant)
       return lhs.value === rhs.value;
     return lhs === rhs;
@@ -380,7 +378,7 @@
             throw new LppError("assignOfConstant");
           }
           case "+": {
-            if (!(this instanceof LppFunction) && rhs instanceof _LppObject && !(rhs instanceof LppFunction)) {
+            if (rhs instanceof _LppObject && !(rhs instanceof LppFunction)) {
               if (this.value.has("constructor") || rhs.value.has("constructor")) {
                 return new LppConstant(NaN);
               }
@@ -420,6 +418,7 @@
             throw new LppError("notCallable");
           }
           case "*":
+          case "**":
           case "-":
           case "/":
           case "%":
@@ -666,6 +665,73 @@
       return this.caller(new LppHandle(this, self, args));
     }
     /**
+     * Do arithmetic operations.
+     * @param op Binary operator.
+     * @param rhs Right hand side of the operation.
+     */
+    calc(op, rhs) {
+      if (rhs) {
+        switch (op) {
+          case "=": {
+            throw new LppError("assignOfConstant");
+          }
+          case "==": {
+            return new LppConstant(equal(this, rhs));
+          }
+          case "!=": {
+            return new LppConstant(!equal(this, rhs));
+          }
+          case ">":
+          case "<":
+          case ">=":
+          case "<=": {
+            return new LppConstant(compare(this, op, rhs));
+          }
+          case "&&":
+          case "||": {
+            const left = asBoolean(this);
+            const right = asBoolean(rhs);
+            return new LppConstant(op === "&&" ? left && right : left || right);
+          }
+          case "instanceof": {
+            if (rhs instanceof _LppFunction) {
+              return new LppConstant(this.instanceof(rhs));
+            }
+            throw new LppError("notCallable");
+          }
+          case "+":
+          case "*":
+          case "**":
+          case "-":
+          case "/":
+          case "%":
+          case "<<":
+          case ">>":
+          case ">>>":
+          case "&":
+          case "|":
+          case "^": {
+            return new LppConstant(NaN);
+          }
+        }
+      } else {
+        switch (op) {
+          case "delete": {
+            throw new LppError("assignOfConstant");
+          }
+          case "!": {
+            return new LppConstant(!asBoolean(this));
+          }
+          case "+":
+          case "-":
+          case "~": {
+            return new LppConstant(NaN);
+          }
+        }
+      }
+      throw new Error("lpp: unknown operand");
+    }
+    /**
      * Call function as a constructor.
      * @param args Function arguments.
      * @returns Return value.
@@ -853,6 +919,7 @@
             throw new LppError("notCallable");
           }
           case "-":
+          case "**":
           case "/":
           case "%":
           case "<<":
@@ -1065,6 +1132,7 @@
             return new _LppConstant(op === "&&" ? left && right : left || right);
           }
           case "-":
+          case "**":
           case "/":
           case "%":
           case "<<":
@@ -2242,202 +2310,6 @@
     "\u{1F43A} @VeroFess https://github.com/VeroFess - Technical support"
   ];
 
-  // src/impl/l10n/en-us.ts
-  var en_us_default = {
-    // Name
-    "lpp.name": "lpp",
-    // Documentation
-    "lpp.documentation": "Open documentation",
-    "lpp.documentation.url": "https://github.com/FurryR/lpp-scratch/blob/main/README.md",
-    // Block
-    /// Construction
-    "lpp.block.construct.Number": "Number",
-    "lpp.block.construct.String": "String",
-    "lpp.block.construct.Function": "function",
-    "lpp.block.construct.AsyncFunction": "async function",
-    /// Operator
-    "lpp.block.operator.var": "var",
-    "lpp.block.operator.self": "this",
-    /// Statement
-    "lpp.block.statement.return": "return",
-    "lpp.block.statement.throw": "throw",
-    "lpp.block.statement.scope": "scope",
-    "lpp.block.statement.try.1": "try",
-    "lpp.block.statement.try.2": "catch",
-    // Error
-    "lpp.error.useAfterDispose.summary": "Cannot operate sprite on a disposed target.",
-    "lpp.error.useAfterDispose.detail": "This error happens when you call a function which belongs to a disposed target, whose sprite is operated on. Please review your code.",
-    "lpp.error.useOutsideFunction.summary": "Cannot use this block outside a function context.",
-    "lpp.error.useOutsideFunction.detail": "Please note that this block must be used in function contexts.",
-    "lpp.error.useOutsideContext.summary": "Cannot use this block outside a lpp context.",
-    "lpp.error.useOutsideContext.detail": 'Please create a lpp context use "scope" block first.',
-    "lpp.error.syntaxError.summary": "Syntax error.",
-    "lpp.error.syntaxError.detail": "You used the block incorrectly. Please recheck if you used Scratch literals directly or misused expand operator.",
-    "lpp.error.accessOfNull.summary": "Invalid access of null.",
-    "lpp.error.accessOfNull.detail": "Please validate the object before you use.",
-    "lpp.error.assignOfConstant.summary": "Assigning to a constant is not allowed.",
-    "lpp.error.assignOfConstant.detail": "Please note that you cannot assign a value to a constant.",
-    "lpp.error.invalidIndex.summary": "Invalid index.",
-    "lpp.error.invalidIndex.detail": "Please note that you cannot use complex objects like Array, Object or Function as index.",
-    "lpp.error.notCallable.summary": "Object is not callable.",
-    "lpp.error.notCallable.detail": "Please note that you can only call Function objects.",
-    "lpp.error.recursivePrototype.summary": "Recursive prototype is not allowed.",
-    "lpp.error.recursivePrototype.detail": "Please resolve recursive dependency.",
-    "lpp.error.uncaughtException.summary": "Uncaught exception.",
-    "lpp.error.uncaughtException.detail": "Please use try-catch block to catch exceptions or the code will stop execution.",
-    "lpp.error.uncaughtException.exception": "Exception:",
-    "lpp.error.uncaughtException.traceback": "Traceback:",
-    "lpp.error.releaseMode.summary": "The code encountered an error while running.",
-    "lpp.error.releaseMode.detail": "The program may not work as intended. Please contact project maintainers with this message for help.",
-    "lpp.error.blockNotFound": "Unable to find the block in Blockly workspace. The block might not belong to the target that you are currently editing.",
-    "lpp.error.position": "Position:",
-    "lpp.error.context": "Context:",
-    "lpp.error.self": "This:",
-    "lpp.error.arguments": "Arguments:",
-    "lpp.error.hint": "For further information please check DevTools Console.",
-    // Category
-    "lpp.category.builtin": "Builtin",
-    "lpp.category.construct": "Construction",
-    "lpp.category.operator": "Operator",
-    "lpp.category.statement": "Statement",
-    // Tooltip
-    "lpp.tooltip.builtin.type": "Predefined builtin data types. Includes everything which language feature requires.",
-    "lpp.tooltip.builtin.error": "Predefined builtin error types. Includes all errors which builtin classes throw.",
-    "lpp.tooltip.builtin.utility": "Predefined builtin utility types. Includes methods to process data.",
-    "lpp.tooltip.construct.literal": "Construct special literals in lpp.",
-    "lpp.tooltip.construct.Number": "Construct a Number object by Scratch literal.",
-    "lpp.tooltip.construct.String": "Construct a String object by Scratch literal.",
-    "lpp.tooltip.construct.Array": 'Construct an Array object with specified structure. Use "+" to add or "-" to remove an element.',
-    "lpp.tooltip.construct.Object": 'Construct an Object object with specified structure. Use "+" to add or "-" to remove an element.',
-    "lpp.tooltip.construct.Function": 'Construct an Function object. Use "+" to add or "-" to remove an argument.',
-    "lpp.tooltip.construct.AsyncFunction": 'Construct an asynchronous Function object. Use "+" to add or "-" to remove an argument.',
-    "lpp.tooltip.operator.get": "Get specified member of specified object.",
-    "lpp.tooltip.operator.binaryOp": "Do binary operations.",
-    "lpp.tooltip.operator.unaryOp": "Do unary operations.",
-    "lpp.tooltip.operator.call": 'Call function with given arguments. Use "+" to add or "-" to remove an argument.',
-    "lpp.tooltip.operator.new": 'Construct an instance with given constructor and arguments. Use "+" to add or "-" to remove an argument.',
-    "lpp.tooltip.operator.self": "Get the reference of self object in function context.",
-    "lpp.tooltip.operator.var": "Get the reference of a specified local variable or an argument.",
-    "lpp.tooltip.statement.return": "Return a value from the function.",
-    "lpp.tooltip.statement.throw": "Throw a value. It will interrupt current control flow immediately.",
-    "lpp.tooltip.statement.scope": "Create a lpp scope and execute the code in it.",
-    "lpp.tooltip.statement.try": "Try capturing exceptions in specified statements. If an exception is thrown, set the specified reference to error object, then execute exception handling code.",
-    "lpp.tooltip.statement.nop": "Does nothing. It is used to convert a Scratch reporter into a statement.",
-    "lpp.tooltip.button.close": "Close this hint.",
-    "lpp.tooltip.button.help.more": "Show detail.",
-    "lpp.tooltip.button.help.less": "Hide detail.",
-    "lpp.tooltip.button.scrollToBlockEnabled": "Scroll to this block.",
-    "lpp.tooltip.button.scrollToBlockDisabled": "Unable to find this block in project.",
-    "lpp.tooltip.button.nativeFn": "This is native function. For further information please check DevTools Console.",
-    // About
-    "lpp.about.summary": "lpp is a high-level programming language developed by @FurryR.",
-    "lpp.about.github": "GitHub repository",
-    "lpp.about.afdian": "Sponsor",
-    "lpp.about.staff.1": "lpp developers staff",
-    "lpp.about.staff.2": "lpp won't be created without their effort."
-  };
-
-  // src/impl/l10n/zh-cn.ts
-  var zh_cn_default = {
-    // 名称
-    "lpp.name": "lpp",
-    // 文档
-    "lpp.documentation": "\u6253\u5F00\u6587\u6863",
-    "lpp.documentation.url": "https://github.com/FurryR/lpp-scratch/blob/main/README-zh_CN.md",
-    // 积木
-    /// 构造
-    "lpp.block.construct.Number": "\u6570\u5B57",
-    "lpp.block.construct.String": "\u5B57\u7B26\u4E32",
-    "lpp.block.construct.Function": "\u51FD\u6570",
-    "lpp.block.construct.AsyncFunction": "\u5F02\u6B65\u51FD\u6570",
-    /// 运算符
-    "lpp.block.operator.var": "\u53D8\u91CF",
-    "lpp.block.operator.self": "\u81EA\u8EAB",
-    /// 语句
-    "lpp.block.statement.return": "\u8FD4\u56DE",
-    "lpp.block.statement.throw": "\u629B\u51FA",
-    "lpp.block.statement.scope": "\u4F5C\u7528\u57DF",
-    "lpp.block.statement.try.1": "\u5C1D\u8BD5",
-    "lpp.block.statement.try.2": "\u6355\u83B7",
-    // 报错
-    "lpp.error.useAfterDispose.summary": "\u65E0\u6CD5\u5728\u5DF2\u9500\u6BC1\u7684\u76EE\u6807\u4E0A\u64CD\u4F5C\u89D2\u8272\u3002",
-    "lpp.error.useAfterDispose.detail": "\u5982\u679C\u60A8\u8C03\u7528\u4E00\u4E2A\u5C5E\u4E8E\u5DF2\u9500\u6BC1\u89D2\u8272\u7684\u51FD\u6570\u5E76\u5728\u5176\u4E0A\u64CD\u4F5C\u89D2\u8272\uFF0C\u5219\u4F1A\u53D1\u751F\u6B64\u9519\u8BEF\u3002\u8BF7\u68C0\u67E5\u60A8\u7684\u4EE3\u7801\u3002",
-    "lpp.error.useOutsideFunction.summary": "\u65E0\u6CD5\u5728\u51FD\u6570\u4E4B\u5916\u4F7F\u7528\u6B64\u79EF\u6728\u3002",
-    "lpp.error.useOutsideFunction.detail": "\u8BF7\u6CE8\u610F\u4E00\u5B9A\u8981\u5728\u51FD\u6570\u5185\u4F7F\u7528\u6B64\u7C7B\u79EF\u6728\u3002",
-    "lpp.error.useOutsideContext.summary": "\u65E0\u6CD5\u5728 lpp \u4E0A\u4E0B\u6587\u4EE5\u5916\u4F7F\u7528\u6B64\u79EF\u6728\u3002",
-    "lpp.error.useOutsideContext.detail": "\u8BF7\u9996\u5148\u4F7F\u7528\u4F5C\u7528\u57DF\u79EF\u6728\u6765\u521B\u5EFA\u4F5C\u7528\u57DF\u3002",
-    "lpp.error.syntaxError.summary": "\u79EF\u6728\u8BED\u6CD5\u9519\u8BEF\u3002",
-    "lpp.error.syntaxError.detail": "\u60A8\u9519\u8BEF\u5730\u4F7F\u7528\u4E86\u79EF\u6728\u3002\u8BF7\u91CD\u65B0\u68C0\u67E5\u662F\u5426\u6709\u76F4\u63A5\u4F7F\u7528 Scratch \u5B57\u9762\u91CF\u6216\u9519\u8BEF\u4F7F\u7528\u5C55\u5F00\u8FD0\u7B97\u7B26\u7684\u60C5\u51B5\u3002",
-    "lpp.error.accessOfNull.summary": "\u8BBF\u95EE\u4E86 null \u7684\u6210\u5458\u3002",
-    "lpp.error.accessOfNull.detail": "\u8BF7\u5728\u4F7F\u7528\u5BF9\u8C61\u524D\u68C0\u67E5\u5BF9\u8C61\u662F\u5426\u4E3A\u7A7A\u3002",
-    "lpp.error.assignOfConstant.summary": "\u5BF9\u5E38\u91CF\u8FDB\u884C\u4E86\u8D4B\u503C\u64CD\u4F5C\u3002",
-    "lpp.error.assignOfConstant.detail": "\u60A8\u53EF\u80FD\u6DF7\u6DC6\u4E86\u5DE6\u503C\u548C\u53F3\u503C\u3002\u8BF7\u6CE8\u610F\u60A8\u65E0\u6CD5\u5BF9\u53F3\u503C\u8FDB\u884C\u8D4B\u503C\u64CD\u4F5C\u3002",
-    "lpp.error.invalidIndex.summary": "\u5BF9\u8C61\u4E0B\u6807\u65E0\u6548\u3002",
-    "lpp.error.invalidIndex.detail": "\u8BF7\u6CE8\u610F\u8BF8\u5982 Array\uFF0CObject\uFF0CFunction \u7B49\u590D\u6742\u6570\u636E\u7C7B\u578B\u65E0\u6CD5\u4F5C\u4E3A\u4E0B\u6807\u4F7F\u7528\u3002",
-    "lpp.error.notCallable.summary": "\u5BF9\u8C61\u4E0D\u53EF\u8C03\u7528\u3002",
-    "lpp.error.notCallable.detail": "\u60A8\u4E0D\u53EF\u8C03\u7528\u9664\u4E86 Function \u7C7B\u578B\u4EE5\u5916\u7684\u5BF9\u8C61\u3002",
-    "lpp.error.recursivePrototype.summary": "\u5FAA\u73AF\u4F9D\u8D56 prototype \u4E0D\u88AB\u5141\u8BB8\u3002",
-    "lpp.error.recursivePrototype.detail": "\u8BF7\u89E3\u51B3\u5FAA\u73AF\u4F9D\u8D56\u3002",
-    "lpp.error.uncaughtException.summary": "\u6709\u672A\u88AB\u6355\u83B7\u7684\u5F02\u5E38\u3002",
-    "lpp.error.uncaughtException.detail": "\u8BF7\u4F7F\u7528\u5C1D\u8BD5/\u6355\u83B7\u79EF\u6728\u5BF9\u9519\u8BEF\u8FDB\u884C\u6355\u83B7\uFF0C\u5426\u5219\u4EE3\u7801\u5C06\u7EC8\u6B62\u8FD0\u884C\u3002",
-    "lpp.error.uncaughtException.exception": "\u9519\u8BEF\u5185\u5BB9\uFF1A",
-    "lpp.error.uncaughtException.traceback": "\u6808\u56DE\u6EAF\uFF1A",
-    "lpp.error.releaseMode.summary": "\u4EE3\u7801\u5728\u8FD0\u884C\u8FC7\u7A0B\u4E2D\u53D1\u751F\u9519\u8BEF\u3002",
-    "lpp.error.releaseMode.detail": "\u7A0B\u5E8F\u53EF\u80FD\u65E0\u6CD5\u6309\u9884\u671F\u6B63\u5E38\u8FD0\u884C\u3002\u8BF7\u8054\u7CFB\u9879\u76EE\u7EF4\u62A4\u8005\u4EE5\u83B7\u5F97\u5E2E\u52A9\u3002\u8BF7\u6CE8\u610F\u540C\u65F6\u9644\u4E0A\u6B64\u6D88\u606F\u3002",
-    "lpp.error.blockNotFound": "\u65E0\u6CD5\u5728 Blockly \u5DE5\u4F5C\u533A\u4E2D\u627E\u5230\u79EF\u6728\u3002\u8BE5\u79EF\u6728\u53EF\u80FD\u5E76\u4E0D\u5C5E\u4E8E\u5F53\u524D\u6B63\u7F16\u8F91\u7684\u89D2\u8272\u3002",
-    "lpp.error.position": "\u4F4D\u7F6E\uFF1A",
-    "lpp.error.context": "\u4E0A\u4E0B\u6587\uFF1A",
-    "lpp.error.self": "\u81EA\u8EAB\uFF1A",
-    "lpp.error.arguments": "\u53C2\u6570\uFF1A",
-    "lpp.error.hint": "\u8BE6\u7EC6\u5185\u5BB9\u5728 DevTools Console \u5185\u3002",
-    // 分类
-    "lpp.category.builtin": "\u5185\u5D4C",
-    "lpp.category.construct": "\u6784\u9020",
-    "lpp.category.operator": "\u8FD0\u7B97",
-    "lpp.category.statement": "\u8BED\u53E5",
-    // 帮助
-    "lpp.tooltip.builtin.type": "\u9884\u5B9A\u4E49\u7684\u5185\u5D4C\u6570\u636E\u7C7B\u578B\u3002\u5305\u542B\u4E86\u8BED\u8A00\u7279\u6027\u6240\u9700\u8981\u7684\u5168\u90E8\u7C7B\u3002",
-    "lpp.tooltip.builtin.error": "\u9884\u5B9A\u4E49\u7684\u5185\u5D4C\u9519\u8BEF\u7C7B\u578B\u3002\u5305\u542B\u4E86\u8BED\u8A00\u5185\u5D4C\u7C7B\u4F1A\u629B\u51FA\u7684\u5168\u90E8\u9519\u8BEF\u3002",
-    "lpp.tooltip.builtin.utility": "\u9884\u5B9A\u4E49\u7684\u5B9E\u7528\u5DE5\u5177\u7C7B\u578B\u3002\u5305\u542B\u4E86\u5904\u7406\u6570\u636E\u9700\u8981\u7684\u5404\u79CD\u65B9\u6CD5\u3002",
-    "lpp.tooltip.construct.literal": "\u6784\u9020 lpp \u4E2D\u7279\u6B8A\u7684\u5B57\u9762\u91CF\u3002",
-    "lpp.tooltip.construct.Number": "\u4EE5 Scratch \u5B57\u9762\u91CF\u6784\u9020\u4E00\u4E2A Number \u5BF9\u8C61\u3002",
-    "lpp.tooltip.construct.String": "\u4EE5 Scratch \u5B57\u9762\u91CF\u6784\u9020\u4E00\u4E2A String \u5BF9\u8C61\u3002",
-    "lpp.tooltip.construct.Array": "\u4EE5\u6307\u5B9A\u7ED3\u6784\u6784\u9020 Array \u5BF9\u8C61\u3002\u53EF\u4F7F\u7528\u201C+\u201D\u6216\u201C-\u201D\u5BF9\u5143\u7D20\u8FDB\u884C\u589E\u51CF\u3002",
-    "lpp.tooltip.construct.Object": "\u4EE5\u6307\u5B9A\u7ED3\u6784\u6784\u9020 Object \u5BF9\u8C61\u3002\u53EF\u4F7F\u7528\u201C+\u201D\u6216\u201C-\u201D\u5BF9\u5143\u7D20\u8FDB\u884C\u589E\u51CF\u3002",
-    "lpp.tooltip.construct.Function": "\u6784\u9020 Function \u5BF9\u8C61\u3002\u53EF\u4F7F\u7528\u201C+\u201D\u6216\u201C-\u201D\u5BF9\u53C2\u6570\u8FDB\u884C\u589E\u51CF\u3002",
-    "lpp.tooltip.construct.AsyncFunction": "\u6784\u9020\u5F02\u6B65 Function \u5BF9\u8C61\u3002\u53EF\u4F7F\u7528\u201C+\u201D\u6216\u201C-\u201D\u5BF9\u53C2\u6570\u8FDB\u884C\u589E\u51CF\u3002",
-    "lpp.tooltip.operator.get": "\u83B7\u5F97\u5BF9\u8C61\u4E0B\u7684\u67D0\u4E2A\u6210\u5458\u3002",
-    "lpp.tooltip.operator.binaryOp": "\u8FDB\u884C\u4E8C\u5143\u8FD0\u7B97\u3002",
-    "lpp.tooltip.operator.unaryOp": "\u8FDB\u884C\u4E00\u5143\u8FD0\u7B97\u3002",
-    "lpp.tooltip.operator.call": "\u4EE5\u7ED9\u5B9A\u7684\u53C2\u6570\u8C03\u7528\u51FD\u6570\u3002\u53EF\u4F7F\u7528\u201C+\u201D\u6216\u201C-\u201D\u5BF9\u53C2\u6570\u8FDB\u884C\u589E\u51CF\u3002",
-    "lpp.tooltip.operator.new": "\u4EE5\u6307\u5B9A\u7684\u53C2\u6570\u548C\u6784\u9020\u5668\u6784\u9020\u4E00\u4E2A\u5B9E\u4F8B\u3002\u53EF\u4F7F\u7528\u201C+\u201D\u6216\u201C-\u201D\u5BF9\u53C2\u6570\u8FDB\u884C\u589E\u51CF\u3002",
-    "lpp.tooltip.operator.self": "\u83B7\u5F97 Function \u5BF9\u8C61\u4E0A\u4E0B\u6587\u4E2D\u81EA\u8EAB\u7684\u5F15\u7528\u3002",
-    "lpp.tooltip.operator.var": "\u83B7\u5F97\u5F53\u524D\u4F5C\u7528\u57DF\u4E2D\u5C40\u90E8\u53D8\u91CF\u6216\u53C2\u6570\u7684\u5F15\u7528\u3002",
-    "lpp.tooltip.statement.return": "\u4ECE\u51FD\u6570\u8FD4\u56DE\u4E00\u4E2A\u503C\u3002",
-    "lpp.tooltip.statement.throw": "\u629B\u51FA\u4E00\u4E2A\u503C\u3002\u8FD9\u5C06\u7ACB\u5373\u4E2D\u65AD\u5F53\u524D\u63A7\u5236\u6D41\u3002",
-    "lpp.tooltip.statement.scope": "\u65B0\u5EFA lpp \u4F5C\u7528\u57DF\uFF0C\u5E76\u5728\u4F5C\u7528\u57DF\u5185\u6267\u884C\u4EE3\u7801\u3002",
-    "lpp.tooltip.statement.try": "\u5C1D\u8BD5\u5728\u6307\u5B9A\u7684\u8BED\u53E5\u5757\u4E2D\u6355\u83B7\u9519\u8BEF\u3002\u82E5\u6709\u9519\u8BEF\u88AB\u629B\u51FA\uFF0C\u5C06\u6307\u5B9A\u7684\u53D8\u91CF\u5F15\u7528\u8D4B\u503C\u4E3A\u9519\u8BEF\u5BF9\u8C61\uFF0C\u7136\u540E\u6267\u884C\u9519\u8BEF\u5904\u7406\u4EE3\u7801\u3002",
-    "lpp.tooltip.statement.nop": "\u65E0\u4EFB\u4F55\u6548\u679C\u3002\u7528\u4E8E\u5C06\u8FD4\u56DE\u503C\u79EF\u6728\u8F6C\u6362\u4E3A\u8BED\u53E5\u3002",
-    "lpp.tooltip.button.close": "\u5173\u95ED\u8FD9\u4E2A\u63D0\u793A\u3002",
-    "lpp.tooltip.button.help.more": "\u663E\u793A\u8BE6\u7EC6\u4FE1\u606F\u3002",
-    "lpp.tooltip.button.help.less": "\u9690\u85CF\u8BE6\u7EC6\u4FE1\u606F\u3002",
-    "lpp.tooltip.button.scrollToBlockEnabled": "\u8F6C\u5230\u8FD9\u4E2A\u79EF\u6728\u3002",
-    "lpp.tooltip.button.scrollToBlockDisabled": "\u65E0\u6CD5\u5728\u9879\u76EE\u4E2D\u627E\u5230\u6B64\u79EF\u6728\u3002",
-    "lpp.tooltip.button.nativeFn": "\u8FD9\u662F\u539F\u751F\u51FD\u6570\u3002\u8BE6\u7EC6\u5185\u5BB9\u5728 DevTools Console \u5185\u3002",
-    // 关于
-    "lpp.about.summary": "lpp \u662F\u7531 @FurryR \u5F00\u53D1\u7684\u9AD8\u7EA7\u7A0B\u5E8F\u8BBE\u8BA1\u8BED\u8A00\u3002",
-    "lpp.about.github": "\u672C\u9879\u76EE\u7684 GitHub \u4ED3\u5E93",
-    "lpp.about.afdian": "\u8D5E\u52A9\u8005",
-    "lpp.about.staff.1": "lpp \u5F00\u53D1\u8005\u540D\u5355",
-    "lpp.about.staff.2": "\u5982\u679C\u6CA1\u6709\u4ED6/\u5979\u4EEC\uFF0Clpp \u5C06\u4E0D\u590D\u5B58\u5728\u3002"
-  };
-
-  // src/impl/l10n/index.ts
-  var l10n_default = {
-    en: en_us_default,
-    "zh-cn": zh_cn_default
-  };
-
   // src/impl/traceback/dialog.ts
   var dialog_exports = {};
   __export(dialog_exports, {
@@ -2732,7 +2604,7 @@
   };
 
   // src/impl/traceback/inspector.ts
-  function Inspector(Blockly, vm, formatMessage, value) {
+  function Inspector(Blockly, vm, translate, value) {
     function ExtendIcon(title, hideTitle, onShow, onHide) {
       let state = false;
       const icon = document.createElement("span");
@@ -2769,7 +2641,7 @@
           ),
           dialog_exports.Text(` \u27A1\uFE0F `)
         );
-        subelem.append(Inspector(Blockly, vm, formatMessage, value3));
+        subelem.append(Inspector(Blockly, vm, translate, value3));
         return subelem;
       }
       const metadata = (value2 instanceof LppObject || value2 instanceof LppFunction) && hasMetadata(value2);
@@ -2818,9 +2690,11 @@
           traceback.classList.add("lpp-traceback-stack-enabled");
           const { sprite, blocks } = value2.metadata;
           traceback.textContent = blocks[1];
-          traceback.title = formatMessage(
-            "lpp.tooltip.button.scrollToBlockEnabled"
-          );
+          traceback.title = translate({
+            id: "lpp.tooltip.button.scrollToBlockEnabled",
+            default: "Scroll to this block.",
+            description: "Scroll button text."
+          });
           traceback.addEventListener("click", () => {
             const box = Blockly.DropDownDiv.getContentDiv().getElementsByClassName(
               "valueReportBox"
@@ -2862,8 +2736,16 @@
     } else if (value instanceof LppArray || value instanceof LppObject || value instanceof LppFunction || value instanceof LppBoundArg) {
       let v;
       const btn = ExtendIcon(
-        formatMessage("lpp.tooltip.button.help.more"),
-        formatMessage("lpp.tooltip.button.help.less"),
+        translate({
+          id: "lpp.tooltip.button.help.more",
+          default: "Show detail.",
+          description: "Show detail button."
+        }),
+        translate({
+          id: "lpp.tooltip.button.help.less",
+          default: "Hide detail.",
+          description: "Hide detail button."
+        }),
         () => {
           if (!v)
             span.appendChild(v = objView(value));
@@ -2894,7 +2776,11 @@
       if (Blockly && (value instanceof LppFunction || value instanceof LppObject) && hasMetadata(value) && value.metadata instanceof ScratchMetadata && value.metadata.sprite && vm.runtime.getTargetById(value.metadata.sprite)) {
         const workspace = Blockly.getMainWorkspace();
         const { sprite, blocks } = value.metadata;
-        code.title = formatMessage("lpp.tooltip.button.scrollToBlockEnabled");
+        code.title = translate({
+          id: "lpp.tooltip.button.scrollToBlockEnabled",
+          default: "Scroll to this block.",
+          description: "Scroll button text."
+        });
         code.classList.add("lpp-traceback-stack-enabled");
         code.addEventListener("click", () => {
           const box = Blockly.DropDownDiv.getContentDiv().getElementsByClassName(
@@ -3031,7 +2917,7 @@
       }
     }
   }
-  function warnError(Blockly, vm, formatMessage, error, id, target) {
+  function warnError(Blockly, vm, translate, error, id, target) {
     if (Blockly) {
       if (vm.runtime.getEditingTarget()?.id !== target && vm.runtime.getTargetById(target)) {
         vm.setEditingTarget(target);
@@ -3045,14 +2931,26 @@
         [
           IconGroup([
             HelpIcon(
-              formatMessage("lpp.tooltip.button.help.more"),
-              formatMessage("lpp.tooltip.button.help.less"),
+              translate({
+                id: "lpp.tooltip.button.help.more",
+                default: "Show detail.",
+                description: "Show detail button."
+              }),
+              translate({
+                id: "lpp.tooltip.button.help.less",
+                default: "Hide detail.",
+                description: "Hide detail button."
+              }),
               () => {
                 if (div) {
                   const v = div.getElementsByClassName("lpp-hint")[0];
                   if (v) {
                     original = v.textContent ?? "";
-                    v.textContent = `\u{1F4A1} ${formatMessage(`lpp.error.${error}.detail`)}`;
+                    v.textContent = `\u{1F4A1} ${translate({
+                      id: `lpp.error.${error}.detail`,
+                      default: `Text [lpp.error.${error}.detail]`,
+                      description: "Error detail message."
+                    })}`;
                   }
                 }
               },
@@ -3065,72 +2963,134 @@
                 }
               }
             ),
-            CloseIcon(Blockly, formatMessage("lpp.tooltip.button.close"))
+            CloseIcon(
+              Blockly,
+              translate({
+                id: "lpp.tooltip.button.close",
+                default: "Close this hint.",
+                description: "Close button."
+              })
+            )
           ]),
-          Title(`\u2139\uFE0F ${formatMessage(`lpp.error.${error}.summary`)}`),
+          Title(
+            `\u2139\uFE0F ${translate({
+              id: `lpp.error.${error}.summary`,
+              default: `Text [lpp.error.${error}.summary]`,
+              description: "Error summary message."
+            })}`
+          ),
           document.createElement("br"),
-          Text(`\u{1F50D} ${formatMessage("lpp.error.hint")}`, "lpp-hint")
+          Text(
+            `\u{1F50D} ${translate({ id: "lpp.error.hint", default: "For further information please check DevTools Console.", description: "Open DevTools hint." })}`,
+            "lpp-hint"
+          )
         ],
         "left"
       );
       if (!div) {
         notificationAlert({
-          title: `\u274C ${formatMessage(`lpp.error.${error}.summary`)}`,
-          body: `\u{1F4CC} ${formatMessage(
-            "lpp.error.position"
-          )} ${id}
-\u{1F50D} ${formatMessage("lpp.error.hint")}`,
+          title: `\u274C ${translate({
+            id: `lpp.error.${error}.summary`,
+            default: `Text [lpp.error.${error}.summary]`,
+            description: "Error summary message."
+          })}`,
+          body: `\u{1F4CC} ${translate({
+            id: "lpp.error.position",
+            default: "Position:",
+            description: "Position indicator."
+          })} ${id}
+\u{1F50D} ${translate({ id: "lpp.error.hint", default: "For further information please check DevTools Console.", description: "Open DevTools hint." })}`,
           tag: "lppError",
           silent: false
         });
       }
     } else {
       notificationAlert({
-        title: `\u274C ${formatMessage("lpp.error.releaseMode.summary")}`,
-        body: `\u2139\uFE0F ${formatMessage(
-          "lpp.error.releaseMode.detail"
-        )}
-\u{1F50D} ${formatMessage("lpp.error.hint")}`,
+        title: `\u274C ${translate({ id: "lpp.error.releaseMode.summary", default: "The code encountered an error while running.", description: "Release mode error message." })}`,
+        body: `\u2139\uFE0F ${translate({
+          id: "lpp.error.releaseMode.detail",
+          default: "The program may not work as intended. Please contact project maintainers with this message for help.",
+          description: "Release mode error hint."
+        })}
+\u{1F50D} ${translate({ id: "lpp.error.hint", default: "For further information please check DevTools Console.", description: "Open DevTools hint." })}`,
         tag: "lppError",
         silent: true
       });
     }
-    console.groupCollapsed(`\u274C ${formatMessage(`lpp.error.${error}.summary`)}`);
+    console.groupCollapsed(
+      `\u274C ${translate({
+        id: `lpp.error.${error}.summary`,
+        default: `Text [lpp.error.${error}.summary]`,
+        description: "Error summary message."
+      })}`
+    );
     if (Blockly) {
-      console.log(`\u{1F4A1} ${formatMessage(`lpp.error.${error}.detail`)}`);
+      console.log(
+        `\u{1F4A1} ${translate({
+          id: `lpp.error.${error}.detail`,
+          default: `Text [lpp.error.${error}.detail]`,
+          description: "Error detail message."
+        })}`
+      );
       const block = Blockly.getMainWorkspace()?.getBlockById(id);
       const svgRoot = block?.getSvgRoot();
-      console.groupCollapsed(`\u{1F4CC} ${formatMessage("lpp.error.position")} ${id}`);
+      console.groupCollapsed(
+        `\u{1F4CC} ${translate({
+          id: "lpp.error.position",
+          default: "Position:",
+          description: "Position indicator."
+        })} ${id}`
+      );
       if (svgRoot) {
         showTraceback(svgRoot);
         console.log(svgRoot);
       } else {
-        console.log(`\u2753 ${formatMessage("lpp.error.blockNotFound")}`);
+        console.log(
+          `\u2753 ${translate({ id: "lpp.error.blockNotFound", default: "Unable to find the block in Blockly workspace. The block might not belong to the target that you are currently editing.", description: "Block not found hint." })}`
+        );
       }
       console.groupEnd();
     } else {
-      console.log(`\u2139\uFE0F ${formatMessage("lpp.error.releaseMode.detail")}`);
-      console.log(`\u{1F4CC} ${formatMessage("lpp.error.position")} ${id}`);
+      console.log(
+        `\u2139\uFE0F ${translate({
+          id: "lpp.error.releaseMode.detail",
+          default: "The program may not work as intended. Please contact project maintainers with this message for help.",
+          description: "Release mode error hint."
+        })}`
+      );
+      console.log(
+        `\u{1F4CC} ${translate({
+          id: "lpp.error.position",
+          default: "Position:",
+          description: "Position indicator."
+        })} ${id}`
+      );
     }
     console.groupEnd();
   }
-  function warnException(Blockly, vm, formatMessage, exception) {
+  function warnException(Blockly, vm, translate, exception) {
     if (Blockly) {
       const getTraceback = () => {
         const text = [];
         text.push(
-          `\u{1F4A1} ${formatMessage(`lpp.error.uncaughtException.detail`)}`,
+          `\u{1F4A1} ${translate({
+            id: "lpp.error.uncaughtException.detail",
+            default: "Please use try-catch block to catch exceptions or the code will stop execution.",
+            description: "Uncaught exception summary."
+          })}`,
           document.createElement("br"),
           document.createElement("br")
         );
         text.push(
-          `\u{1F914} ${formatMessage("lpp.error.uncaughtException.exception")}`,
+          `\u{1F914} ${translate({ id: "lpp.error.uncaughtException.exception", default: "Exception:", description: "Exception hint." })}`,
           document.createElement("br"),
-          Inspector(Blockly, vm, formatMessage, exception.value),
+          Inspector(Blockly, vm, translate, exception.value),
           // TODO: Better design
           document.createElement("br")
         );
-        text.push(`\u{1F47E} ${formatMessage("lpp.error.uncaughtException.traceback")}`);
+        text.push(
+          `\u{1F47E} ${translate({ id: "lpp.error.uncaughtException.traceback", default: "Traceback:", description: "Traceback hint." })}`
+        );
         const list = document.createElement("ul");
         list.classList.add("lpp-list");
         for (const [index, value] of exception.stack.entries()) {
@@ -3141,9 +3101,11 @@
             if (vm.runtime.getTargetById(value.target)) {
               const workspace = Blockly.getMainWorkspace();
               traceback.classList.add("lpp-traceback-stack-enabled");
-              traceback.title = formatMessage(
-                "lpp.tooltip.button.scrollToBlockEnabled"
-              );
+              traceback.title = translate({
+                id: "lpp.tooltip.button.scrollToBlockEnabled",
+                default: "Scroll to this block.",
+                description: "Scroll button text."
+              });
               traceback.addEventListener("click", () => {
                 const box = Blockly.DropDownDiv.getContentDiv().getElementsByClassName(
                   "valueReportBox"
@@ -3160,12 +3122,18 @@
               });
             } else {
               traceback.classList.add("lpp-traceback-stack-disabled");
-              traceback.title = formatMessage(
-                "lpp.tooltip.button.scrollToBlockDisabled"
-              );
+              traceback.title = translate({
+                id: "lpp.tooltip.button.scrollToBlockDisabled",
+                default: "Unable to find this block in project.",
+                description: "Block not found (for serialized fn) hint."
+              });
             }
           } else if (value instanceof LppTraceback2.NativeFn) {
-            traceback.title = formatMessage("lpp.tooltip.button.nativeFn");
+            traceback.title = translate({
+              id: "lpp.tooltip.button.nativeFn",
+              default: "This is native function. For further information please check DevTools Console.",
+              description: "Native function hint."
+            });
           }
           traceback.textContent = value.toString();
           li.append(`\u{1F4CC} ${index} \u27A1\uFE0F `, traceback);
@@ -3187,8 +3155,16 @@
             [
               IconGroup([
                 HelpIcon(
-                  formatMessage("lpp.tooltip.button.help.more"),
-                  formatMessage("lpp.tooltip.button.help.less"),
+                  translate({
+                    id: "lpp.tooltip.button.help.more",
+                    default: "Show detail.",
+                    description: "Show detail button."
+                  }),
+                  translate({
+                    id: "lpp.tooltip.button.help.less",
+                    default: "Hide detail.",
+                    description: "Hide detail button."
+                  }),
                   () => {
                     if (div) {
                       const v = div.getElementsByClassName("lpp-hint")[0];
@@ -3211,14 +3187,21 @@
                 ),
                 CloseIcon(
                   Blockly,
-                  formatMessage("lpp.tooltip.button.close")
+                  translate({
+                    id: "lpp.tooltip.button.close",
+                    default: "Close this hint.",
+                    description: "Close button."
+                  })
                 )
               ]),
               Title(
-                `\u2139\uFE0F ${formatMessage(`lpp.error.uncaughtException.summary`)}`
+                `\u2139\uFE0F ${translate({ id: "lpp.error.uncaughtException.summary", default: "Uncaught exception.", description: "Uncaught exception hint." })}`
               ),
               document.createElement("br"),
-              Text(`\u{1F50D} ${formatMessage("lpp.error.hint")}`, "lpp-hint")
+              Text(
+                `\u{1F50D} ${translate({ id: "lpp.error.hint", default: "For further information please check DevTools Console.", description: "Open DevTools hint." })}`,
+                "lpp-hint"
+              )
             ],
             "left"
           );
@@ -3228,38 +3211,54 @@
       }
       if (!flag)
         notificationAlert({
-          title: `\u274C ${formatMessage("lpp.error.uncaughtException.summary")}`,
-          body: `\u{1F4A1} ${formatMessage(
-            "lpp.error.uncaughtException.detail"
-          )}
-\u{1F50D} ${formatMessage("lpp.error.hint")}`,
+          title: `\u274C ${translate({ id: "lpp.error.uncaughtException.summary", default: "Uncaught exception.", description: "Uncaught exception hint." })}`,
+          body: `\u{1F4A1} ${translate({
+            id: "lpp.error.uncaughtException.detail",
+            default: "Please use try-catch block to catch exceptions or the code will stop execution.",
+            description: "Uncaught exception summary."
+          })}
+\u{1F50D} ${translate({ id: "lpp.error.hint", default: "For further information please check DevTools Console.", description: "Open DevTools hint." })}`,
           tag: "lppError",
           silent: false
         });
     } else {
       notificationAlert({
-        title: `\u274C ${formatMessage("lpp.error.releaseMode.summary")}`,
-        body: `\u2139\uFE0F ${formatMessage(
-          "lpp.error.releaseMode.detail"
-        )}
-\u{1F50D} ${formatMessage("lpp.error.hint")}`,
+        title: `\u274C ${translate({ id: "lpp.error.releaseMode.summary", default: "The code encountered an error while running.", description: "Release mode error message." })}`,
+        body: `\u2139\uFE0F ${translate({
+          id: "lpp.error.releaseMode.detail",
+          default: "The program may not work as intended. Please contact project maintainers with this message for help.",
+          description: "Release mode error hint."
+        })}
+\u{1F50D} ${translate({ id: "lpp.error.hint", default: "For further information please check DevTools Console.", description: "Open DevTools hint." })}`,
         tag: "lppError",
         silent: true
       });
     }
     console.groupCollapsed(
-      `\u274C ${formatMessage("lpp.error.uncaughtException.summary")}`
+      `\u274C ${translate({ id: "lpp.error.uncaughtException.summary", default: "Uncaught exception.", description: "Uncaught exception hint." })}`
     );
     if (Blockly)
-      console.log(`\u{1F4A1} ${formatMessage("lpp.error.uncaughtException.detail")}`);
+      console.log(
+        `\u{1F4A1} ${translate({
+          id: "lpp.error.uncaughtException.detail",
+          default: "Please use try-catch block to catch exceptions or the code will stop execution.",
+          description: "Uncaught exception summary."
+        })}`
+      );
     else
-      console.log(`\u2139\uFE0F ${formatMessage("lpp.error.releaseMode.detail")}`);
+      console.log(
+        `\u2139\uFE0F ${translate({
+          id: "lpp.error.releaseMode.detail",
+          default: "The program may not work as intended. Please contact project maintainers with this message for help.",
+          description: "Release mode error hint."
+        })}`
+      );
     console.log(
-      `\u{1F914} ${formatMessage("lpp.error.uncaughtException.exception")}`,
+      `\u{1F914} ${translate({ id: "lpp.error.uncaughtException.exception", default: "Exception:", description: "Exception hint." })}`,
       exception.value
     );
     console.groupCollapsed(
-      `\u{1F47E} ${formatMessage("lpp.error.uncaughtException.traceback")}`
+      `\u{1F47E} ${translate({ id: "lpp.error.uncaughtException.traceback", default: "Traceback:", description: "Traceback hint." })}`
     );
     for (const [idx, value] of exception.stack.entries()) {
       if (Blockly) {
@@ -3273,15 +3272,26 @@
             showTraceback(svgRoot);
             console.log(svgRoot);
           } else {
-            console.log(`\u2753 ${formatMessage("lpp.error.blockNotFound")}`);
+            console.log(
+              `\u2753 ${translate({ id: "lpp.error.blockNotFound", default: "Unable to find the block in Blockly workspace. The block might not belong to the target that you are currently editing.", description: "Block not found hint." })}`
+            );
           }
           if (value.context)
-            console.log(`\u{1F6E0}\uFE0F ${formatMessage("lpp.error.context")}`, value.context);
+            console.log(
+              `\u{1F6E0}\uFE0F ${translate({ id: "lpp.error.context", default: "Context:", description: "Context hint." })}`,
+              value.context
+            );
           console.groupEnd();
         } else if (value instanceof LppTraceback2.NativeFn) {
           console.groupCollapsed(`\u{1F4CC} ${idx + 1} \u27A1\uFE0F`, value.fn);
-          console.log(`\u{1F6E0}\uFE0F ${formatMessage("lpp.error.self")}`, value.self);
-          console.log(`\u{1F6E0}\uFE0F ${formatMessage("lpp.error.arguments")}`, value.args);
+          console.log(
+            `\u{1F6E0}\uFE0F ${translate({ id: "lpp.error.self", default: "This:", description: "Self object hint." })}`,
+            value.self
+          );
+          console.log(
+            `\u{1F6E0}\uFE0F ${translate({ id: "lpp.error.arguments", default: "Arguments:", description: "Arguments hint." })}`,
+            value.args
+          );
           console.groupEnd();
         } else {
           console.log(`\u{1F4CC} ${idx + 1} \u27A1\uFE0F`, value.toString());
@@ -3379,20 +3389,24 @@
         const res = {};
         if (typeof map === "function") {
           res.init = function(...args) {
+            if (!(this instanceof Blockly.Block)) {
+              return;
+            }
             prepatch(this);
             const fn = value.init(Blockly, this);
             return fn(...args);
           };
         } else {
-          for (const key2 of Object.keys(map)) {
-            res[key2] = function(...args) {
-              if (!(this instanceof Blockly.Block))
+          for (const method of Object.keys(map)) {
+            res[method] = function(...args) {
+              if (!(this instanceof Blockly.Block)) {
                 return;
-              if (key2 === "init") {
+              }
+              if (method === "init") {
                 prepatch(this);
               }
               const map2 = value.init(Blockly, this);
-              return map2[key2].apply(window, args);
+              return map2[method].apply(window, args);
             };
           }
         }
@@ -3663,7 +3677,7 @@
   })();
   var plusImage = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTggMTBoLTR2LTRjMC0xLjEwNC0uODk2LTItMi0ycy0yIC44OTYtMiAybC4wNzEgNGgtNC4wNzFjLTEuMTA0IDAtMiAuODk2LTIgMnMuODk2IDIgMiAybDQuMDcxLS4wNzEtLjA3MSA0LjA3MWMwIDEuMTA0Ljg5NiAyIDIgMnMyLS44OTYgMi0ydi00LjA3MWw0IC4wNzFjMS4xMDQgMCAyLS44OTYgMi0ycy0uODk2LTItMi0yeiIgZmlsbD0id2hpdGUiIC8+PC9zdmc+Cg==";
   var minusImage = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTggMTFoLTEyYy0xLjEwNCAwLTIgLjg5Ni0yIDJzLjg5NiAyIDIgMmgxMmMxLjEwNCAwIDItLjg5NiAyLTJzLS44OTYtMi0yLTJ6IiBmaWxsPSJ3aGl0ZSIgLz48L3N2Zz4K";
-  function defineExtension(color, runtime, formatMessage) {
+  function defineExtension(id, color, runtime, translate) {
     const Plus = (Blockly, block) => {
       const FieldImageButton = initalizeField(Blockly);
       return new FieldImageButton(
@@ -3737,50 +3751,61 @@
         true
       );
     };
-    const updateButton = (Blockly, block) => {
+    const updateButton = (Blockly, block, minValue = 0, maxValue = Infinity) => {
       if (block.length !== void 0) {
         block.removeInput("MINUS", true);
         block.removeInput("PLUS", true);
         const start = block.inputList[0]?.name;
-        block.appendDummyInput("PLUS").appendField(Plus(Blockly, block));
-        if (start)
-          block.moveInputBefore("PLUS", start);
-        if (block.length > 0) {
+        if (block.length < maxValue) {
+          block.appendDummyInput("PLUS").appendField(Plus(Blockly, block));
+          if (start)
+            block.moveInputBefore("PLUS", start);
+        }
+        if (block.length > minValue) {
           block.appendDummyInput("MINUS").appendField(Minus(Blockly, block));
           if (start)
             block.moveInputBefore("MINUS", start);
         }
       }
     };
-    const cleanInputs = (block) => {
+    function cleanInputs(id2, targetInput) {
       const target = runtime.getEditingTarget();
-      const vmBlock = target?.blocks.getBlock(block.id);
-      if (!vmBlock || !target)
+      if (!target)
         return;
-      const usedInputs = new Set(block.inputList.map((i) => i.name));
-      const inputs = vmBlock.inputs;
+      const block = target.blocks.getBlock(id2);
+      if (!block)
+        return;
+      const inputs = block.inputs;
       for (const name of Object.keys(inputs)) {
         const input = inputs[name];
-        if (!usedInputs.has(name)) {
+        if (targetInput.includes(name)) {
           const blocks = target.blocks;
           blocks.deleteBlock(input.block);
           blocks.deleteBlock(input.shadow);
           delete inputs[name];
         }
       }
-    };
-    return new Extension("lpp", color).register(
+    }
+    return new Extension(id, color).register(
       /// Documentation
       new Button(
         "documentation",
-        () => `\u{1F4C4} ${formatMessage("lpp.documentation")}`
+        () => `\u{1F4C4} ${translate({ id: "lpp.documentation", default: "Open documentation", description: "Documentation button." })}`
       )
     ).register(
       /// Builtin
-      new Category(() => `#\uFE0F\u20E3 ${formatMessage("lpp.category.builtin")}`).register(
+      new Category(
+        () => `#\uFE0F\u20E3 ${translate({ id: "lpp.category.builtin", default: "Builtin", description: "Builtin category." })}`
+      ).register(
         "builtinType",
         Reporter.Round((Blockly, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.builtin.type"));
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.builtin.type",
+              default: "Predefined builtin data types. Includes everything which language feature requires.",
+              description: "Builtin types tooltip."
+            })
+          );
           block.appendDummyInput().appendField(
             new Blockly.FieldDropdown([
               ["Boolean", "Boolean"],
@@ -3797,7 +3822,13 @@
       ).register(
         "builtinError",
         Reporter.Round((Blockly, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.builtin.error"));
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.builtin.error",
+              default: "Predefined builtin error types. Includes all errors which builtin classes throw.",
+              description: "Builtin errors tooltip."
+            })
+          );
           block.appendDummyInput().appendField(
             new Blockly.FieldDropdown([
               ["Error", "Error"],
@@ -3810,7 +3841,13 @@
       ).register(
         "builtinUtility",
         Reporter.Round((Blockly, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.builtin.error"));
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.builtin.utility",
+              default: "Predefined builtin utility types. Includes methods to process data.",
+              description: "Builtin utilities tooltip."
+            })
+          );
           block.appendDummyInput().appendField(
             new Blockly.FieldDropdown([
               ["JSON", "JSON"],
@@ -3822,10 +3859,18 @@
       )
     ).register(
       /// Construct
-      new Category(() => `\u{1F6A7} ${formatMessage("lpp.category.construct")}`).register(
+      new Category(
+        () => `\u{1F6A7} ${translate({ id: "lpp.category.construct", default: "Construction", description: "Construction category." })}`
+      ).register(
         "constructLiteral",
         Reporter.Round((Blockly, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.construct.literal"));
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.construct.literal",
+              default: "Construct special literals in lpp.",
+              description: "Literal tooltip."
+            })
+          );
           block.appendDummyInput().appendField(
             new Blockly.FieldDropdown([
               ["null", "null"],
@@ -3840,9 +3885,19 @@
       ).register(
         "constructNumber",
         Reporter.Square((_, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.construct.Number"));
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.construct.Number",
+              default: "Construct a Number object by Scratch literal.",
+              description: "Number constructor tooltip."
+            })
+          );
           input_exports.Text(block, "BEGIN", [
-            formatMessage("lpp.block.construct.Number"),
+            translate({
+              id: "lpp.block.construct.Number",
+              default: "Number",
+              description: "Number constructor block."
+            }),
             "("
           ]);
           input_exports.String(block, "value", "10");
@@ -3851,9 +3906,19 @@
       ).register(
         "constructString",
         Reporter.Square((_, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.construct.String"));
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.construct.String",
+              default: "Construct a String object by Scratch literal.",
+              description: "String constructor tooltip."
+            })
+          );
           input_exports.Text(block, "BEGIN", [
-            formatMessage("lpp.block.construct.String"),
+            translate({
+              id: "lpp.block.construct.String",
+              default: "String",
+              description: "String constructor block."
+            }),
             "("
           ]);
           input_exports.String(block, "value", "\u{1F31F}");
@@ -3863,7 +3928,13 @@
         "constructArray",
         Reporter.Square((Blockly, block) => ({
           init() {
-            block.setTooltip(formatMessage("lpp.tooltip.construct.Array"));
+            block.setTooltip(
+              translate({
+                id: "lpp.tooltip.construct.Array",
+                default: 'Construct an Array object with specified structure. Use "+" to add or "-" to remove an element.',
+                description: "Array constructor tooltip."
+              })
+            );
             const property = block;
             input_exports.Text(block, "BEGIN", "[");
             input_exports.Text(block, "END", "]");
@@ -3893,11 +3964,13 @@
                   block.moveInputBefore(`ARG_${i}`, "END");
                 }
               } else {
+                const removeList = [];
                 for (let i = length; i < block.length; i++) {
                   block.removeInput(`ARG_${i}`, true);
                   block.removeInput(`COMMA_${i}`, true);
+                  removeList.push(`ARG_${i}`, `COMMA_${i}`);
                 }
-                cleanInputs(block);
+                cleanInputs(block.id, removeList);
               }
               block.length = length;
               updateButton(Blockly, block);
@@ -3908,7 +3981,13 @@
         "constructObject",
         Reporter.Square((Blockly, block) => ({
           init() {
-            block.setTooltip(formatMessage("lpp.tooltip.construct.Object"));
+            block.setTooltip(
+              translate({
+                id: "lpp.tooltip.construct.Object",
+                default: 'Construct an Object object with specified structure. Use "+" to add or "-" to remove an element.',
+                description: "Object constructor tooltip."
+              })
+            );
             const property = block;
             input_exports.Text(block, "BEGIN", "{");
             input_exports.Text(block, "END", "}");
@@ -3942,13 +4021,20 @@
                   block.moveInputBefore(`KEY_${i}`, `COLON_${i}`);
                 }
               } else {
+                const removeList = [];
                 for (let i = length; i < block.length; i++) {
                   block.removeInput(`KEY_${i}`, true);
                   block.removeInput(`COLON_${i}`, true);
                   block.removeInput(`VALUE_${i}`, true);
                   block.removeInput(`COMMA_${i}`, true);
+                  removeList.push(
+                    `KEY_${i}`,
+                    `COLON_${i}`,
+                    `VALUE_${i}`,
+                    `COMMA_${i}`
+                  );
                 }
-                cleanInputs(block);
+                cleanInputs(block.id, removeList);
               }
               block.length = length;
               updateButton(Blockly, block);
@@ -3959,10 +4045,20 @@
         "constructFunction",
         Reporter.Square((Blockly, block) => ({
           init() {
-            block.setTooltip(formatMessage("lpp.tooltip.construct.Function"));
+            block.setTooltip(
+              translate({
+                id: "lpp.tooltip.construct.Function",
+                default: 'Construct an Function object. Use "+" to add or "-" to remove an argument.',
+                description: "Function constructor tooltip."
+              })
+            );
             const property = block;
             input_exports.Text(block, "BEGIN", [
-              formatMessage("lpp.block.construct.Function"),
+              translate({
+                id: "lpp.block.construct.Function",
+                default: "function",
+                description: "Function constructor block."
+              }),
               "("
             ]);
             input_exports.Text(block, "END", ")");
@@ -3993,11 +4089,13 @@
                   block.moveInputBefore(`ARG_${i}`, "END");
                 }
               } else {
+                const removeList = [];
                 for (let i = length; i < block.length; i++) {
                   block.removeInput(`ARG_${i}`, true);
                   block.removeInput(`COMMA_${i}`, true);
+                  removeList.push(`ARG_${i}`, `COMMA_${i}`);
                 }
-                cleanInputs(block);
+                cleanInputs(block.id, removeList);
               }
               block.length = length;
               updateButton(Blockly, block);
@@ -4009,11 +4107,19 @@
         Reporter.Square((Blockly, block) => ({
           init() {
             block.setTooltip(
-              formatMessage("lpp.tooltip.construct.AsyncFunction")
+              translate({
+                id: "lpp.tooltip.construct.AsyncFunction",
+                default: 'Construct an asynchronous Function object. Use "+" to add or "-" to remove an argument.',
+                description: "Asynchronous function constructor tooltip."
+              })
             );
             const property = block;
             input_exports.Text(block, "BEGIN", [
-              formatMessage("lpp.block.construct.AsyncFunction"),
+              translate({
+                id: "lpp.block.construct.AsyncFunction",
+                default: "async function",
+                description: "Asynchronous function constructor block."
+              }),
               "("
             ]);
             input_exports.Text(block, "END", ")");
@@ -4044,11 +4150,13 @@
                   block.moveInputBefore(`ARG_${i}`, "END");
                 }
               } else {
+                const removeList = [];
                 for (let i = length; i < block.length; i++) {
                   block.removeInput(`ARG_${i}`, true);
                   block.removeInput(`COMMA_${i}`, true);
+                  removeList.push(`ARG_${i}`, `COMMA_${i}`);
                 }
-                cleanInputs(block);
+                cleanInputs(block.id, removeList);
               }
               block.length = length;
               updateButton(Blockly, block);
@@ -4057,45 +4165,112 @@
         }))
       )
     ).register(
-      new Category(() => `\u{1F522} ${formatMessage("lpp.category.operator")}`).register(
+      new Category(
+        () => `\u{1F522} ${translate({ id: "lpp.category.operator", default: "Operator", description: "Operator category." })}`
+      ).register(
         "binaryOp",
-        Reporter.Square((Blockly, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.operator.binaryOp"));
-          input_exports.String(block, "lhs", "");
-          block.appendDummyInput().appendField(
-            new Blockly.FieldDropdown([
-              ["=", "="],
-              [".", "."],
-              ["+", "+"],
-              ["-", "-"],
-              ["*", "*"],
-              ["/", "/"],
-              ["%", "%"],
-              ["==", "=="],
-              ["!=", "!="],
-              [">", ">"],
-              ["<", "<"],
-              [">=", ">="],
-              ["<=", "<="],
-              ["&&", "&&"],
-              ["||", "||"],
-              ["<<", "<<"],
-              [">>", ">>"],
-              [">>>", ">>>"],
-              ["&", "&"],
-              ["|", "|"],
-              ["^", "^"],
-              ["instanceof", "instanceof"],
-              ["in", "in"]
-            ]),
-            "op"
-          );
-          input_exports.String(block, "rhs", "");
-        })
+        Reporter.Square((Blockly, block) => ({
+          init() {
+            block.setTooltip(
+              translate({
+                id: "lpp.tooltip.operator.binaryOp",
+                default: "Do binary operations.",
+                description: "Binary operations tooltip."
+              })
+            );
+            block.appendDummyInput("END");
+            const property = block;
+            property.length = 0;
+            if (block.domToMutation && block.mutationToDom)
+              block.domToMutation(block.mutationToDom());
+            updateButton(Blockly, property, 2);
+          },
+          mutationToDom() {
+            const elem = document.createElement("mutation");
+            if (isMutableBlock(block)) {
+              elem.setAttribute("length", String(block.length));
+            }
+            return elem;
+          },
+          domToMutation(mutation) {
+            const length = Math.max(
+              2,
+              parseInt(mutation.getAttribute("length") ?? "0", 10)
+            );
+            if (isMutableBlock(block)) {
+              if (length > block.length) {
+                for (let i = block.length; i < length; i++) {
+                  if (i > 0) {
+                    block.appendDummyInput(`OP_${i}`).appendField(
+                      new Blockly.FieldDropdown([
+                        [".", "."],
+                        ["?.", "?."],
+                        ["**", "**"],
+                        ["*", "*"],
+                        ["/", "/"],
+                        ["+", "+"],
+                        ["%", "%"],
+                        ["-", "-"],
+                        ["<<", "<<"],
+                        [">>", ">>"],
+                        [">>>", ">>>"],
+                        ["<", "<"],
+                        ["<=", "<="],
+                        [">", ">"],
+                        [">=", ">="],
+                        ["in", "in"],
+                        ["instanceof", "instanceof"],
+                        ["==", "=="],
+                        ["!=", "!="],
+                        ["&", "&"],
+                        ["^", "^"],
+                        ["|", "|"],
+                        ["&&", "&&"],
+                        ["||", "||"],
+                        ["=", "="],
+                        [",", ","]
+                      ]),
+                      `OP_${i}`
+                    );
+                    const fields = runtime.getEditingTarget()?.blocks.getBlock(block.id)?.fields;
+                    if (fields)
+                      fields[`OP_${i}`] = {
+                        id: null,
+                        name: `OP_${i}`,
+                        value: "."
+                      };
+                    block.moveInputBefore(`OP_${i}`, "END");
+                  }
+                  input_exports.String(block, `ARG_${i}`, "");
+                  block.moveInputBefore(`ARG_${i}`, "END");
+                }
+              } else {
+                const removeList = [];
+                for (let i = length; i < block.length; i++) {
+                  block.removeInput(`ARG_${i}`, true);
+                  block.removeInput(`OP_${i}`, true);
+                  const fields = runtime.getEditingTarget()?.blocks.getBlock(block.id)?.fields;
+                  if (fields)
+                    delete fields[`OP_${i}`];
+                  removeList.push(`ARG_${i}`);
+                }
+                cleanInputs(block.id, removeList);
+              }
+              block.length = length;
+              updateButton(Blockly, block, 2);
+            }
+          }
+        }))
       ).register(
         "unaryOp",
         Reporter.Square((Blockly, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.operator.unaryOp"));
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.operator.unaryOp",
+              default: "Do unary operations.",
+              description: "Unary operations tooltip."
+            })
+          );
           block.appendDummyInput().appendField(
             new Blockly.FieldDropdown([
               ["+", "+"],
@@ -4116,7 +4291,13 @@
         "new",
         Reporter.Square((Blockly, block) => ({
           init() {
-            block.setTooltip(formatMessage("lpp.tooltip.operator.new"));
+            block.setTooltip(
+              translate({
+                id: "lpp.tooltip.operator.new",
+                default: 'Construct an instance with given constructor and arguments. Use "+" to add or "-" to remove an argument.',
+                description: "New operator tooltip."
+              })
+            );
             const property = block;
             input_exports.Text(block, "LABEL", "new");
             input_exports.Any(block, "fn");
@@ -4148,11 +4329,13 @@
                   block.moveInputBefore(`ARG_${i}`, "END");
                 }
               } else {
+                const removeList = [];
                 for (let i = length; i < block.length; i++) {
                   block.removeInput(`ARG_${i}`, true);
                   block.removeInput(`COMMA_${i}`, true);
+                  removeList.push(`ARG_${i}`, `COMMA_${i}`);
                 }
-                cleanInputs(block);
+                cleanInputs(block.id, removeList);
               }
               block.length = length;
               updateButton(Blockly, block);
@@ -4163,7 +4346,13 @@
         "call",
         Reporter.Square((Blockly, block) => ({
           init() {
-            block.setTooltip(formatMessage("lpp.tooltip.operator.call"));
+            block.setTooltip(
+              translate({
+                id: "lpp.tooltip.operator.call",
+                default: 'Call function with given arguments. Use "+" to add or "-" to remove an argument.',
+                description: "Call operator tooltip."
+              })
+            );
             const property = block;
             input_exports.Any(block, "fn");
             input_exports.Text(block, "BEGIN", "(");
@@ -4194,11 +4383,13 @@
                   block.moveInputBefore(`ARG_${i}`, "END");
                 }
               } else {
+                const removeList = [];
                 for (let i = length; i < block.length; i++) {
                   block.removeInput(`ARG_${i}`, true);
                   block.removeInput(`COMMA_${i}`, true);
+                  removeList.push(`ARG_${i}`, `COMMA_${i}`);
                 }
-                cleanInputs(block);
+                cleanInputs(block.id, removeList);
               }
               block.length = length;
               updateButton(Blockly, block);
@@ -4208,29 +4399,53 @@
       ).register(
         "self",
         Reporter.Round((_, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.operator.self"));
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.operator.self",
+              default: "Get the reference of self object in function context.",
+              description: "Self (aka this) tooltip."
+            })
+          );
           block.setCheckboxInFlyout(false);
-          input_exports.Text(block, "LABEL", formatMessage("lpp.block.operator.self"));
+          input_exports.Text(block, "LABEL", "this");
         })
       ).register(
         "var",
         Reporter.Round((_, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.operator.var"));
-          input_exports.Text(block, "LABEL", formatMessage("lpp.block.operator.var"));
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.operator.var",
+              default: "Get the reference of a specified local variable or an argument.",
+              description: "Variable operator tooltip."
+            })
+          );
+          input_exports.Text(
+            block,
+            "LABEL",
+            translate({
+              id: "lpp.block.operator.var",
+              default: "var",
+              description: "Var operator block."
+            })
+          );
           input_exports.String(block, "name", "\u{1F43A}");
         })
       )
     ).register(
-      new Category(() => `\u{1F916} ${formatMessage("lpp.category.statement")}`).register(
+      new Category(
+        () => `\u{1F916} ${translate({ id: "lpp.category.statement", default: "Statement", description: "Statement category." })}`
+      ).register(
         "return",
         Command(
           (_, block) => () => {
-            block.setTooltip(formatMessage("lpp.tooltip.statement.return"));
-            input_exports.Text(
-              block,
-              "LABEL",
-              formatMessage("lpp.block.statement.return")
+            block.setTooltip(
+              translate({
+                id: "lpp.tooltip.statement.return",
+                default: "Return a value from the function.",
+                description: "Return statement tooltip."
+              })
             );
+            input_exports.Text(block, "LABEL", "return");
             input_exports.Any(block, "value");
           },
           true
@@ -4239,12 +4454,14 @@
         "throw",
         Command(
           (_, block) => () => {
-            block.setTooltip(formatMessage("lpp.tooltip.statement.throw"));
-            input_exports.Text(
-              block,
-              "LABEL",
-              formatMessage("lpp.block.statement.throw")
+            block.setTooltip(
+              translate({
+                id: "lpp.tooltip.statement.throw",
+                default: "Throw a value. It will interrupt current control flow immediately.",
+                description: "Throw statement tooltip."
+              })
             );
+            input_exports.Text(block, "LABEL", "throw");
             input_exports.Any(block, "value");
           },
           true
@@ -4252,32 +4469,50 @@
       ).register(
         "scope",
         Command((_, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.statement.scope"));
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.statement.scope",
+              default: "Create a lpp scope and execute the code in it.",
+              description: "Scope statement tooltip."
+            })
+          );
           input_exports.Text(
             block,
             "LABEL",
-            formatMessage("lpp.block.statement.scope")
+            translate({
+              id: "lpp.block.statement.scope",
+              default: "scope",
+              description: "Scope statement block."
+            })
           );
           input_exports.Statement(block, "SUBSTACK");
         })
       ).register(
         "try",
         Command((_, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.statement.try"));
-          input_exports.Text(block, "TRY", formatMessage("lpp.block.statement.try.1"));
-          input_exports.Statement(block, "SUBSTACK");
-          input_exports.Text(
-            block,
-            "CATCH",
-            formatMessage("lpp.block.statement.try.2")
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.statement.try",
+              default: "Try capturing exceptions in specified statements. If an exception is thrown, set the specified reference to error object, then execute exception handling code.",
+              description: "Try-catch statement tooltip."
+            })
           );
+          input_exports.Text(block, "TRY", "try");
+          input_exports.Statement(block, "SUBSTACK");
+          input_exports.Text(block, "CATCH", "catch");
           input_exports.Any(block, "var");
           input_exports.Statement(block, "SUBSTACK_2");
         })
       ).register(
         "nop",
         Command((_, block) => () => {
-          block.setTooltip(formatMessage("lpp.tooltip.statement.nop"));
+          block.setTooltip(
+            translate({
+              id: "lpp.tooltip.statement.nop",
+              default: "Does nothing. It is used to convert a Scratch reporter into a statement.",
+              description: "No-op block tooltip."
+            })
+          );
           input_exports.Any(block, "value");
         })
       )
@@ -4754,6 +4989,7 @@
       runtime.sequencer.stepThread(callerThread);
       callerThread.generator = orig;
     }
+    util.thread = callerThread;
   }
 
   // src/impl/thread/index.ts
@@ -4798,7 +5034,43 @@
       Function.prototype.apply = _orig;
       return result;
     }
+    function getVM(runtime) {
+      let virtualMachine;
+      if (runtime._events["QUESTION"] instanceof Array) {
+        for (const value of runtime._events["QUESTION"]) {
+          const v = hijack(value);
+          if (v?.props?.vm) {
+            virtualMachine = v?.props?.vm;
+            break;
+          }
+        }
+      } else if (runtime._events["QUESTION"]) {
+        virtualMachine = hijack(runtime._events["QUESTION"])?.props?.vm;
+      }
+      if (!virtualMachine)
+        throw new Error("lpp cannot get Virtual Machine instance.");
+      return virtualMachine;
+    }
+    function getBlockly(vm) {
+      let Blockly;
+      if (vm._events["EXTENSION_ADDED"] instanceof Array) {
+        for (const value of vm._events["EXTENSION_ADDED"]) {
+          const v = hijack(value);
+          if (v?.ScratchBlocks) {
+            Blockly = v?.ScratchBlocks;
+            break;
+          }
+        }
+      } else if (vm._events["EXTENSION_ADDED"]) {
+        Blockly = hijack(vm._events["EXTENSION_ADDED"])?.ScratchBlocks;
+      }
+      return Blockly;
+    }
     class LppExtension {
+      /**
+       * Extension ID.
+       */
+      static id = "lpp";
       /**
        * Virtual machine instance.
        */
@@ -4820,42 +5092,7 @@
        * @param originalRuntime Scratch runtime.
        */
       constructor(originalRuntime) {
-        const runtime = originalRuntime;
-        this.Blockly = void 0;
-        Scratch2.translate.setup(l10n_default);
-        let virtualMachine;
-        if (runtime._events["QUESTION"] instanceof Array) {
-          for (const value of runtime._events["QUESTION"]) {
-            const v = hijack(value);
-            if (v?.props?.vm) {
-              virtualMachine = v?.props?.vm;
-              break;
-            }
-          }
-        } else if (runtime._events["QUESTION"]) {
-          virtualMachine = hijack(runtime._events["QUESTION"])?.props?.vm;
-        }
-        if (!virtualMachine)
-          throw new Error("lpp cannot get Virtual Machine instance.");
-        this.vm = virtualMachine;
-        this.extension = defineExtension(
-          color,
-          this.vm.runtime,
-          this.formatMessage.bind(this)
-        );
-        if (this.vm._events["EXTENSION_ADDED"] instanceof Array) {
-          for (const value of this.vm._events["EXTENSION_ADDED"]) {
-            const v = hijack(value);
-            if (v?.ScratchBlocks) {
-              this.Blockly = v?.ScratchBlocks;
-              break;
-            }
-          }
-        } else if (this.vm._events["EXTENSION_ADDED"]) {
-          this.Blockly = hijack(this.vm._events["EXTENSION_ADDED"])?.ScratchBlocks;
-        }
-        if (this.Blockly) {
-          const Blockly = this.Blockly;
+        function patchBlockly(Blockly, extension) {
           const Events = Blockly.Events;
           const _Change = Events.Change.prototype.run;
           Events.Change.prototype.run = function(_forward) {
@@ -4890,7 +5127,28 @@
             self.ids = res;
             _Create.call(this, _forward);
           };
+          extension.inject(Blockly);
         }
+        const runtime = originalRuntime;
+        this.Blockly = void 0;
+        this.vm = getVM(runtime);
+        this.extension = defineExtension(
+          LppExtension.id,
+          color,
+          this.vm.runtime,
+          Scratch2.translate
+        );
+        this.Blockly = getBlockly(this.vm);
+        if (this.Blockly)
+          patchBlockly(this.Blockly, this.extension);
+        else
+          this.vm.once("workspaceUpdate", () => {
+            const newBlockly = getBlockly(this.vm);
+            if (newBlockly && newBlockly !== this.Blockly) {
+              this.Blockly = newBlockly;
+              patchBlockly(newBlockly, this.extension);
+            }
+          });
         const _emit = runtime.emit;
         runtime.emit = (event, ...args) => {
           const blacklist = ["SAY", "QUESTION"];
@@ -4907,14 +5165,7 @@
             dialog_exports.show(
               this.Blockly,
               blockId,
-              [
-                Inspector(
-                  this.Blockly,
-                  this.vm,
-                  this.formatMessage.bind(this),
-                  actualValue
-                )
-              ],
+              [Inspector(this.Blockly, this.vm, Scratch2.translate, actualValue)],
               actualValue instanceof LppConstant ? "center" : "left"
             );
           } else {
@@ -4933,7 +5184,7 @@
                 const inspector = Inspector(
                   this.Blockly,
                   this.vm,
-                  this.formatMessage.bind(this),
+                  Scratch2.translate,
                   value
                 );
                 valueElement.style.textAlign = "left";
@@ -5096,62 +5347,81 @@
           version
         };
         console.groupCollapsed("\u{1F4AB} lpp", version);
-        console.log("\u{1F31F}", this.formatMessage("lpp.about.summary"));
+        console.log(
+          "\u{1F31F}",
+          Scratch2.translate({
+            id: "lpp.about.summary",
+            default: "lpp is a high-level programming language developed by @FurryR.",
+            description: "Extension summary."
+          })
+        );
         console.log(
           "\u{1F916}",
-          this.formatMessage("lpp.about.github"),
+          Scratch2.translate({
+            id: "lpp.about.github",
+            default: "GitHub repository",
+            description: "GitHub repository hint."
+          }),
           "-> https://github.com/FurryR/lpp-scratch"
         );
         console.log(
           "\u{1F49E}",
-          this.formatMessage("lpp.about.afdian"),
+          Scratch2.translate({
+            id: "lpp.about.afdian",
+            default: "Sponsor",
+            description: "Sponsor hint."
+          }),
           "-> https://afdian.net/a/FurryR"
         );
-        console.group("\u{1F47E}", this.formatMessage("lpp.about.staff.1"));
+        console.group(
+          "\u{1F47E}",
+          Scratch2.translate({
+            id: "lpp.about.staff.1",
+            default: "lpp developers staff",
+            description: "Staff list."
+          })
+        );
         for (const v of developers) {
           console.log(v);
         }
-        console.log("\u{1F970}", this.formatMessage("lpp.about.staff.2"));
+        console.log(
+          "\u{1F970}",
+          Scratch2.translate({
+            id: "lpp.about.staff.2",
+            default: "lpp won't be created without their effort.",
+            description: "Staff list ending."
+          })
+        );
         console.groupEnd();
         console.groupEnd();
-      }
-      /**
-       * Multi-language formatting support.
-       * @param id key of the translation.
-       * @returns Formatted string.
-       */
-      formatMessage(id) {
-        return Scratch2.translate({
-          id,
-          default: id,
-          description: id
-        });
       }
       /**
        * Get extension info.
        * @returns Extension info.
        */
       getInfo() {
-        if (this.Blockly)
-          this.extension.inject(this.Blockly);
         return {
-          id: "lpp",
-          name: this.formatMessage("lpp.name"),
+          id: LppExtension.id,
+          name: Scratch2.translate({
+            id: "lpp.name",
+            default: "lpp",
+            description: "Extension name."
+          }),
           color1: color,
-          blocks: this.extension.export(),
-          menus: {
-            dummy: {
-              acceptReporters: false,
-              items: []
-            }
-          }
+          blocks: this.extension.export()
         };
       }
       /**
        * Opens documentation.
        */
       documentation() {
-        window.open(this.formatMessage("lpp.documentation.url"));
+        window.open(
+          Scratch2.translate({
+            id: "lpp.documentation.url",
+            default: "https://github.com/FurryR/lpp-scratch/blob/main/README.md",
+            description: "Documentation URL."
+          })
+        );
       }
       /**
        * Builtin types.
@@ -5216,29 +5486,86 @@
        * @returns Result.
        */
       binaryOp(args, util) {
+        const { thread } = util;
         this.util = util;
-        try {
-          const lhs = Wrapper.unwrap(args.lhs);
-          const rhs = Wrapper.unwrap(args.rhs);
-          const res = (() => {
-            if (args.op === ".") {
+        class Operator {
+          constructor(value) {
+            this.value = value;
+          }
+          get priority() {
+            return (/* @__PURE__ */ new Map([
+              [".", 18],
+              ["?.", 18],
+              ["**", 14],
+              ["*", 13],
+              ["/", 13],
+              ["%", 13],
+              ["+", 12],
+              ["-", 12],
+              ["<<", 11],
+              [">>", 11],
+              [">>>", 11],
+              ["<", 10],
+              ["<=", 10],
+              [">", 10],
+              [">=", 10],
+              ["in", 10],
+              ["instanceof", 10],
+              ["==", 9],
+              ["!=", 9],
+              ["&", 8],
+              ["^", 7],
+              ["|", 6],
+              ["&&", 5],
+              ["||", 4],
+              ["=", 2],
+              [",", 1]
+            ])).get(this.value) ?? -1;
+          }
+        }
+        function intoRPN(input) {
+          const stack = [];
+          const result = [];
+          for (const value of input) {
+            if (!(value instanceof Operator)) {
+              result.push(value);
+            } else {
+              let op2;
+              while ((op2 = stack[stack.length - 1]) && op2.priority >= value.priority) {
+                result.push(op2);
+                stack.pop();
+              }
+              stack.push(value);
+            }
+          }
+          let op;
+          while (op = stack.pop()) {
+            result.push(op);
+          }
+          return result;
+        }
+        function evaluate(expr) {
+          function evaluateInternal(op, lhs, rhs) {
+            if (op === "." || op === "?.") {
               if (lhs instanceof LppValue || lhs instanceof LppReference) {
+                if (lhs instanceof LppConstant && lhs.value === null && op === "?.")
+                  return new LppConstant(null);
                 if (typeof rhs === "string" || typeof rhs === "number") {
-                  return lhs.get(`${rhs}`);
+                  const res2 = lhs.get(`${rhs}`);
+                  return op === "?." ? asValue(res2) : res2;
                 } else if (rhs instanceof LppValue || rhs instanceof LppReference) {
-                  const n = asValue(rhs);
-                  if (n instanceof LppConstant && n.value !== null) {
-                    return lhs.get(n.toString());
-                  }
+                  const res2 = lhs.get(String(asValue(rhs)));
+                  return op === "?." ? asValue(res2) : res2;
                 }
                 throw new LppError("invalidIndex");
               }
               throw new LppError("syntaxError");
             } else if ((lhs instanceof LppValue || lhs instanceof LppReference) && (rhs instanceof LppValue || rhs instanceof LppReference)) {
-              switch (args.op) {
+              switch (op) {
                 case "=":
                 case "+":
                 case "*":
+                case "**":
                 case "==":
                 case "!=":
                 case ">":
@@ -5257,7 +5584,7 @@
                 case "|":
                 case "^":
                 case "instanceof": {
-                  return lhs.calc(args.op, asValue(rhs));
+                  return lhs.calc(op, asValue(rhs));
                 }
                 case "in": {
                   const left = asValue(lhs);
@@ -5271,7 +5598,41 @@
               }
             }
             throw new LppError("syntaxError");
-          })();
+          }
+          const stack = [];
+          for (const value of expr) {
+            if (value instanceof Operator) {
+              const rhs = stack.pop();
+              const lhs = stack.pop();
+              if (lhs !== void 0 && rhs !== void 0) {
+                stack.push(evaluateInternal(value.value, lhs, rhs));
+              } else
+                throw new Error("lpp: invalid expression");
+            } else
+              stack.push(value);
+          }
+          const res = stack.pop();
+          if (res === void 0)
+            throw new Error("lpp: invalid expression");
+          return res;
+        }
+        try {
+          const token = [];
+          const block = this.getActiveBlockInstance(args, thread);
+          const len = parseInt(this.getMutation(block)?.length ?? "0", 10);
+          for (let i = 0; i < len; i++) {
+            const op = args[`OP_${i}`];
+            const value = Wrapper.unwrap(args[`ARG_${i}`]);
+            if (typeof op === "string") {
+              token.push(new Operator(op));
+            }
+            token.push(
+              value instanceof LppValue || value instanceof LppReference || typeof value === "string" ? value : String(value)
+            );
+          }
+          const res = evaluate(intoRPN(token));
+          if (typeof res === "string")
+            throw new Error("lpp: invalid expression");
           return new Wrapper(res);
         } catch (e) {
           this.handleError(e);
@@ -5917,7 +6278,7 @@
               warnError(
                 this.Blockly,
                 this.vm,
-                this.formatMessage.bind(this),
+                Scratch2.translate,
                 e.id,
                 stack,
                 thread.target.sprite.clones[0].id
@@ -5933,7 +6294,7 @@
        * @param e LppException object.
        */
       handleException(e) {
-        warnException(this.Blockly, this.vm, this.formatMessage.bind(this), e);
+        warnException(this.Blockly, this.vm, Scratch2.translate, e);
         this.vm.runtime.stopAll();
         throw new Error("lpp: user exception");
       }
@@ -6130,41 +6491,6 @@
         return ffi_exports.fromObject(info);
       }
     }
-    if (Scratch2.vm?.runtime) {
-      Scratch2.extensions.register(new LppExtension(Scratch2.vm.runtime));
-    } else {
-      Reflect.set(window, "tempExt", {
-        Extension: LppExtension,
-        info: {
-          name: "lpp.name",
-          description: "lpp.desc",
-          extensionId: "lpp",
-          iconURL: icon_default,
-          featured: true,
-          disabled: false,
-          collaboratorList: [
-            {
-              collaborator: "\u718A\u8C37 \u51CC",
-              collaboratorURL: "https://github.com/FurryR"
-            },
-            {
-              collaborator: "...",
-              collaboratorURL: "https://github.com/FurryR/lpp-scratch"
-            }
-          ]
-        },
-        // CCW doesn't support languages like ja-jp, so we do not need to add other translations.
-        l10n: {
-          "zh-cn": {
-            "lpp.name": "lpp",
-            "lpp.desc": "\u{1F6E0}\uFE0F (\u5B9E\u9A8C\u6027) \u4E00\u95E8\u57FA\u4E8E Scratch \u7684\u9AD8\u7EA7\u7F16\u7A0B\u8BED\u8A00\u3002"
-          },
-          en: {
-            "lpp.name": "lpp",
-            "lpp.desc": "\u{1F6E0}\uFE0F (Experimental) A high-level programming language based on Scratch"
-          }
-        }
-      });
-    }
+    Scratch2.extensions.register(new LppExtension(Scratch2.vm.runtime));
   })(Scratch);
 })();
