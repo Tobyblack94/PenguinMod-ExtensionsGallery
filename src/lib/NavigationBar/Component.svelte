@@ -38,7 +38,8 @@
     </a>
     <div style="margin-right: 12px;"></div>
     <BarPage style="padding:0.5rem" on:click={toggleTheme}>
-        <img src="/icons/moon.svg" alt="Theme" />
+        <img src="/icons/moon.svg" alt="Theme" class="moon"/>
+        <img src="/icons/sun.svg" alt="Theme" class="sun"/>
     </BarPage>
     <BarPage link={"/docs"}>Documentation</BarPage>
 
@@ -194,4 +195,16 @@
     .search-recommendation:active {
         filter: brightness(0.8);
     }
+    .moon {
+    	display: block;
+	}
+	.sun {
+    	display: none;
+	}
+	:global(body.dark-mode) .moon {
+    	display: none;
+	}
+	:global(body.dark-mode) .sun {
+    	display: block;
+	}
 </style>
