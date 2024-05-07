@@ -54,6 +54,14 @@ export default [
         isGitHub: true,
     },
     {
+        name: "ElectraAPI",
+        description: "Based on Pang API for ElectraMod.",
+        code: "Aness6040/electraapi.js",
+        banner: "Aness6040/electraapi.svg",
+        creator: "Aness6040",
+        isGitHub: true,
+    },
+    {
         name: "ElectraGPT",
         description: "ElectraMod modification of PenguinGPT! Adds more prompts like Mishael or Slixbot!\nElectraGPT banner by Aness6040",
         code: "MubiLop/electragpt.js",

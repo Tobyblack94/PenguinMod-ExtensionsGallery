@@ -79,7 +79,7 @@
 
     <p style="text-align: center;">
         Note: Some extensions may be added to the Extension Gallery in
-        PenguinMod Studio.<br />If you cannot find an extension that was
+        ElectraMod Editor.<br />If you cannot find an extension that was
         previously listed here, check there.
     </p>
 
