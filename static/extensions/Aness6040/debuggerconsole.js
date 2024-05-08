@@ -942,7 +942,12 @@
           }
         }
         defaultHelpMessageEnabled(){
-            return defaultHelpMessage;
+            if (defaultHelpMessage === 'enable') {
+                return true;
+              } 
+              else {
+                return false;
+              }
         }
 
         getLastInput() {
