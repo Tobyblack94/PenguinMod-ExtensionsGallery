@@ -1,7 +1,7 @@
 ((Scratch) => {
     'use strict';
 
-    const version = '0.2.3';
+    const version = '0.2.4';
 
     const { Cast, ArgumentType, BlockType } = Scratch;
 
@@ -133,6 +133,7 @@
             "help": "注讝专讛:<br><br>谞拽讜讚转 注爪讬专讛:<br>讛砖讛讛 讗转 讛转讻谞讬转 诇爪讜专讱 谞讬驻讜讬 讘讗讙讬诐, 诇讞抓 注诇 \"讛诪砖讱\"讻讚讬 诇讞讚砖 <br>讗转 讛讘讬爪讜注.<br><br>拽讜谞住讜诇讛:<br>讞诇讜谉 注讘讜专 拽诇讟 讜驻诇讟.<br><br>驻诇讟:<br>讛讚驻住 讟拽住讟 讗讜 诪砖转谞讬诐 讘谞拽讜讚讜转 诪驻转讞 诇爪讜专讱 谞讬驻讜讬 讘讗讙讬诐.<br><br>拽诇讟:<br>诇讞抓 注诇 讛讻驻转讜专 \">\" 诇诪注诇讛 讻讚讬 诇讛讝讬谉, 谞讬转谉 诇讝讛讜转 讗转 讛拽诇讟 讻<br>\"讻讗砖专 拽诇讟\" 讗讜 \"拽讘诇转 拽诇讟 讗讞专讜谉\"."
         }
     });
+    let messageText = '';
     const formatMessage = Scratch.translate;
     const lang = (id, defaultValue) => Scratch.translate({ id: id, default: defaultValue });
 
@@ -162,6 +163,7 @@
 
     const rtlLang = ['ar', 'fa', 'he', 'ckb'];
     let isDark = getDarkMode();
+    let forceTheme = false;
     let isRTL = rtlLang.includes(localStorage.getItem('tw:language'));
 
     let consoleWindowShown = false;
@@ -195,9 +197,18 @@
     titleBar.style.paddingRight = '12px';
     titleBar.style.cursor = 'move';
     titleBar.style.fontSize = '16px';
-    titleBar.innerText = lang('aness6040debugger.windowText', 'Console') + ' @' + version + ' - by Aness6040 & NOname';
+    if (typeof vm.runtime !== "undefined" && typeof vm.runtime.platform !== "undefined" && typeof vm.runtime.platform.name !== "undefined") {
+        titleBar.innerText = lang('aness6040debugger.windowText', 'Console') + ' @' + version + ' - ' + vm.runtime.platform.name;
+    } else if ((Scratch.extensions.isElectraMod ? true : (Scratch.extensions.isPenguinMod ? true : false))) {
+        titleBar.innerText = lang('aness6040debugger.windowText', 'Console') + ' @' + version + ' - ' + 
+                    (Scratch.extensions.isElectraMod ? "ElectraMod" : 
+                    (Scratch.extensions.isPenguinMod ? "PenguinMod" : "Scratch"));
+    } else {
+        titleBar.innerText = lang('aness6040debugger.windowText', 'Console') + ' @' + version;
+    }
     titleBar.style.position = 'sticky';
     titleBar.style.top = '0px';
+    titleBar.style.textAlign = 'center';
     consoleWindow.appendChild(titleBar);
 
     // 鍒涘缓鍐呭鍖哄煙
@@ -293,49 +304,45 @@
     inputWindow.appendChild(inputBox);
 
     // 鎻愪氦
-    inputBox.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();  // 闃绘榛樿鐨勮涓�
-
-            let messageText = inputBox.value;
-            inputBox.value = '';
-
-            switch (messageText.toLowerCase()) {
-                case 'ext -v': {
-                    addText({ message: `v${version}`, bullet: '>' });
-                    break;
-                }
-                case 'help': { // help thingy
-                    if(defaultHelpMessage === 'enable'){
-                        addText({
-                            message: '> ' + lang(
-                                'help',
-                                'Help:<br><br>   Breakpoint: Pause the program for debugging, press<br>               "Continue" to resume execution.<br>   Console: A window for input and output.<br>   Output: Print text or variables at key points to debug.<br>   Input: Click the ">" button above to input,<br>          input can be detected as<br>          "when input" or "get last input".'
-                            ).replace(/ /g, '&nbsp;') + '<br>&nbsp;',
-                            innerHTML: true
-                        });
-                        
-                        
-                    } else if (defaultHelpMessage === 'disable'){
-                        lastInput = messageText;
-                        vm.runtime.startHats('aness6040debugger_whenInput');
-                    } else if (defaultHelpMessage === 'completlydisable'){
-                        addText({ message: messageText, bullet: `$ ` });
-
-                        lastInput = messageText;
-                        vm.runtime.startHats('aness6040debugger_whenInput');
-                    }
-                    break;
-                }
-                default: {
-                    addText({ message: messageText, bullet: `$ ` });
-
+    function inputmessage(messageText) {
+        switch (messageText.toLowerCase()) {
+            case 'ext -v':
+                addText({ message: `v${version}`, bullet: '>' });
+                break;
+            case 'help':
+                if (defaultHelpMessage === 'enable') {
+                    addText({
+                        message: '> ' + lang(
+                            'help',
+                            'Help:<br><br>   Breakpoint: Pause the program for debugging, press<br>               "Continue" to resume execution.<br>   Console: A window for input and output.<br>   Output: Print text or variables at key points to debug.<br>   Input: Click the ">" button above to input,<br>          input can be detected as<br>          "when input" or "get last input".'
+                        ).replace(/ /g, '&nbsp;') + '<br>&nbsp;',
+                        innerHTML: true
+                    });
+                } else {
                     lastInput = messageText;
+                    if (defaultHelpMessage === 'completlydisable') {
+                        addText({ message: messageText, bullet: `$ ` });
+                    }
                     vm.runtime.startHats('aness6040debugger_whenInput');
                 }
-            }
+                break;
+            default:
+                addText({ message: messageText, bullet: `$ ` });
+                lastInput = messageText;
+                vm.runtime.startHats('aness6040debugger_whenInput');
+                break;
+        }
+    }
+    
+    inputBox.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            let messageText = inputBox.value;
+            inputBox.value = '';
+            inputmessage(messageText);
         }
     });
+    
 
     // 杈撳叆鎺у埗鎸夐挳
     inputButton.addEventListener('click', () => {
@@ -398,7 +405,9 @@
     setInterval(checkLocalStorageChange, 500);
 
     function changeWindowColor() {
-        isDark = getDarkMode();
+        if (!forceTheme) {
+            isDark = getDarkMode();
+        }
         isRTL = rtlLang.includes(localStorage.getItem('tw:language'));
         inputWindow.style.top = `calc(${consoleWindow.style.top} + 228px)`;
         inputWindow.style.left = `calc(${consoleWindow.style.left} - 100px)`;
@@ -469,31 +478,46 @@
         content.innerHTML = '';
     }
 
+    let lastLog = '';
+    let lastLogEncoded = '';
+    let lastLogColor = '';
+    let lastLogTimestamp;
+    
     function addText({ message, color, bullet = '', innerHTML = false }) {
         const logElement = document.createElement('div');
         logElement.style.color = color;
         logElement.style.fontSize = '16px';
         logElement.style.paddingLeft = '10px';
         logElement.style.paddingRight = '10px';
-        if (innerHTML) logElement.innerHTML = message;
-        let inner = isRTL ? `
-            <div style="display: flex; justify-content: space-between; direction: rtl;">
-                ${bullet === '' ? '' : `<span>${bullet}</span><span>&nbsp</span>`}
-                <span style="flex-grow: 1; text-align: right;">${message}</span>
-            </div>
-        ` : `
-            <div style="display: flex; justify-content: space-between; direction: ltr;">
-                ${bullet === '' ? '' : `<span>${bullet}</span><span>&nbsp</span>`}
-                <span style="flex-grow: 1; text-align: left;">${message}</span>
-            </div>
-        `;
-        logElement.innerHTML = inner
-        content.appendChild(logElement);
-
-        while (content.children.length > maxMessage) {
-            content.removeChild(content.children[0])
+    
+        if (innerHTML) {
+            logElement.innerHTML = message;
+        } else {
+            let inner = isRTL ? `
+                <div style="display: flex; justify-content: space-between; direction: rtl;">
+                    ${bullet === '' ? '' : `<span>${bullet}</span><span>&nbsp;</span>`}
+                    <span style="flex-grow: 1; text-align: right;">${message}</span>
+                </div>
+            ` : `
+                <div style="display: flex; justify-content: space-between; direction: ltr;">
+                    ${bullet === '' ? '' : `<span>${bullet}</span><span>&nbsp;</span>`}
+                    <span style="flex-grow: 1; text-align: left;">${message}</span>
+                </div>
+            `;
+            logElement.innerHTML = inner;
         }
-    }
+    
+        content.appendChild(logElement);
+    
+        lastLog = message;
+        lastLogEncoded = lastLog.replace(/ /g, '&nbsp;');
+        lastLogColor = color ?? '';
+        lastLogTimestamp = Date.now();
+    
+        while (content.children.length > maxMessage) {
+            content.removeChild(content.children[0]);
+        }
+    }      
 
     function addImg(base64ImageData) {
         const imageElement = document.createElement('img');
@@ -514,7 +538,7 @@
 
     addText({
         color: '#808080',
-        message: lang('aness6040debugger.tipForHelp', 'Type "help" to view > help.'),
+        message: `<h1>Debugger Console</h1><br><h3>v${version}</h3><br>Originally by NOname (Based on turboWarp CN) and continued by Aness6040 (actual extension).<br><br>` + lang('aness6040debugger.tipForHelp', 'Type "help" to view > help.'),
     });
 
     class Aness6040debugger {
@@ -527,6 +551,20 @@
                 id: 'aness6040debugger',
                 name: lang('aness6040debugger.extName', 'Debugger Console'),
                 blocks: [
+                    '---',
+                    {
+                        func: 'switchTheme',
+                        opcode: 'switchTheme',
+                        blockType: BlockType.BUTTON,
+                        text: lang('aness6040debugger.switchTheme', 'Switch theme')
+                    },
+                    {
+                        func: 'setThemeAuto',
+                        opcode: 'setThemeAuto',
+                        blockType: BlockType.BUTTON,
+                        text: lang('aness6040debugger.setThemeAuto', 'Set Theme to Auto')
+                    },
+                    '---',
                     {
                         opcode: 'showConsole',
                         blockType: BlockType.COMMAND,
@@ -715,6 +753,49 @@
                                 flipRTL: true
                             }
                         }
+                    },
+                    {
+                        opcode: 'getLastLog',
+                        blockType: BlockType.REPORTER,
+                        text: '[ICON]' + lang('aness6040debugger.getLastLog', 'get last log [log]'),
+                        arguments: {
+                            ICON: {
+                                type: ArgumentType.IMAGE,
+                                dataURI: inputIcon,
+                                flipRTL: true
+                            },
+                            log: {
+                                type: ArgumentType.STRING,
+                                menu: 'logType'
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'sendMessageInput',
+                        blockType: BlockType.COMMAND,
+                        text: '[ICON]' + lang('aness6040debugger.sendMessageInput', 'send [message] in input'),
+                        arguments: {
+                            ICON: {
+                                type: ArgumentType.IMAGE,
+                                dataURI: inputIcon,
+                                flipRTL: true
+                            },
+                            message: {
+                                type: ArgumentType.STRING,
+                                defaultValue: 'help'
+                            }
+                        }
+                    },
+                    '---',
+                    {
+                        opcode: 'version',
+                        blockType: BlockType.REPORTER,
+                        text: 'version',
+                    },
+                    {
+                        opcode: 'isDarkMode',
+                        blockType: BlockType.BOOLEAN,
+                        text: lang('aness6040debugger.isDarkMode', 'Is Dark Mode? (Console)'),
                     }
                 ],
                 menus: {
@@ -795,11 +876,53 @@
                                 value: 'completlydisable'
                             },
                         ]
-                    }
+                    },
+                    logType: {
+                        acceptReporters: false,
+                        items: [
+                            {
+                                text: formatMessage({
+                                    id: 'aness6040debugger.text',
+                                    default: 'Text (HTML)'
+                                }),
+                                value: 'text'
+                            },
+                            {
+                                text: formatMessage({
+                                    id: 'aness6040debugger.textEncoded',
+                                    default: 'Text (HTML with encodes)'
+                                }),
+                                value: 'textEncoded'
+                            },
+                            {
+                                text: formatMessage({
+                                    id: 'aness6040debugger.color',
+                                    default: 'color (HEX Code)'
+                                }),
+                                value: 'color'
+                            },
+                            {
+                                text: formatMessage({
+                                    id: 'aness6040debugger.timestamp',
+                                    default: 'Timestamp'
+                                }),
+                                value: 'timestamp'
+                            }
+                        ]
+                    },
                 }
             };
         }
 
+        switchTheme () {
+            forceTheme = true;
+            isDark = !isDark;
+            changeWindowColor();
+        }
+        setThemeAuto () {
+            forceTheme = false;
+            changeWindowColor();
+        }
         showConsole() {
             consoleWindow.style.left = '50%'
             consoleWindow.style.top = '50%';
@@ -952,6 +1075,39 @@
 
         getLastInput() {
             return lastInput;
+        }
+
+        getLastLog(args) {
+            if (args.log === 'text') {
+                return lastLog;
+              } 
+              else if (args.log === 'textEncoded') {
+                return lastLogEncoded;
+              }
+              else if (args.log === 'color') {
+                return lastLogColor;
+              }
+              else if (args.log === 'timestamp') {
+                return lastLogTimestamp;
+              }
+              else {
+                return '';
+              }
+        }
+
+        sendMessageInput(args) {
+            messageText = args.message;
+            inputmessage(messageText);
+            lastInput = messageText;
+        
+        }
+
+        version() {
+          return version;
+        }
+
+        isDarkMode () {
+            return isDark;
         }
     }
 
